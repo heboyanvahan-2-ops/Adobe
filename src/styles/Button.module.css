@@ -1,0 +1,94 @@
+/* Button — переиспользуемая кнопка с вариантами и размерами. */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  text-align: center;
+  white-space: nowrap;
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-base),
+              background-color var(--transition-base),
+              color var(--transition-base);
+  user-select: none;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.button:not(:disabled):active {
+  transform: translateY(0);
+}
+
+/* ---------- Размеры ---------- */
+
+.sm {
+  font-size: var(--fs-sm);
+  padding: 8px 16px;
+}
+
+.md {
+  font-size: var(--fs-base);
+  padding: 12px 24px;
+}
+
+.lg {
+  font-size: var(--fs-md);
+  padding: 16px 32px;
+}
+
+/* ---------- Варианты ---------- */
+
+.primary {
+  background-color: var(--primary-red);
+  color: #fff;
+}
+
+.primary:not(:disabled):hover {
+  background-color: #d10000;
+}
+
+.secondary {
+  background-color: var(--dark-bg);
+  color: #fff;
+}
+
+.secondary:not(:disabled):hover {
+  background-color: #1d2350;
+}
+
+.outline {
+  background-color: transparent;
+  color: var(--text-dark);
+  border: 2px solid var(--border-color);
+}
+
+.outline:not(:disabled):hover {
+  border-color: var(--text-dark);
+  background-color: var(--light-surface);
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--text-dark);
+}
+
+.ghost:not(:disabled):hover {
+  background-color: var(--light-surface);
+  box-shadow: none;
+}
+
+/* Кнопка во всю ширину родителя — пригодится на мобильном */
+.fullWidth {
+  width: 100%;
+}

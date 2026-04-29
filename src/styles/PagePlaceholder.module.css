@@ -1,0 +1,53 @@
+/*
+ * Стили для страниц-заготовок.
+ * Эти страницы временные — их заполнят реальным контентом
+ * на следующих шагах проекта (Hero, ProductGallery и т.д.).
+ */
+
+.section {
+  padding: var(--space-8) 0;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  text-align: center;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 160, 222, 0.1);
+  color: var(--creative-blue);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  margin-bottom: var(--space-4);
+  background: linear-gradient(135deg, var(--text-dark), #4a4a4a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.description {
+  color: var(--text-light);
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-6);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}

@@ -1,0 +1,114 @@
+/* Navigation — адаптивное меню с мобильным выезжающим панельным видом. */
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+/* На мобильных — скрытое меню, открывается поверх контента */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  margin: 0;
+  padding: var(--space-6) var(--space-5);
+
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: var(--light-bg);
+  border-top: 1px solid var(--border-color);
+  overflow-y: auto;
+
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+  z-index: 50;
+}
+
+.listOpen {
+  transform: translateX(0);
+}
+
+.link {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: var(--text-dark);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.link:hover {
+  background-color: var(--light-surface);
+}
+
+.linkActive {
+  color: var(--primary-red);
+  background-color: rgba(255, 0, 0, 0.06);
+}
+
+/* Кнопка-бургер */
+.burger {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.burger:hover {
+  background-color: var(--light-surface);
+}
+
+.burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--text-dark);
+  border-radius: 1px;
+  transition: transform var(--transition-base), opacity var(--transition-fast);
+}
+
+.burgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Десктоп: горизонтальное меню ---------- */
+@media (min-width: 1024px) {
+  .burger {
+    display: none;
+  }
+
+  .list {
+    position: static;
+    flex-direction: row;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    gap: var(--space-2);
+    transform: none;
+    overflow: visible;
+  }
+
+  .link {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--fs-sm);
+  }
+}

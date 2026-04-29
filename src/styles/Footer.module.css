@@ -1,0 +1,99 @@
+/* Footer — подвал сайта со ссылками и копирайтом. */
+
+.footer {
+  background-color: var(--dark-bg);
+  color: #cfd3e8;
+  margin-top: auto;
+  padding: var(--space-7) 0 var(--space-5);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: var(--space-7);
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.brandTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  color: #fff;
+}
+
+.brandMark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--primary-red), #8c0000);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.brandText {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: #9ba1c4;
+  max-width: 380px;
+}
+
+.column h3 {
+  font-size: var(--fs-base);
+  color: #fff;
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.link {
+  font-size: var(--fs-sm);
+  color: #9ba1c4;
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: #fff;
+}
+
+.bottom {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: center;
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: #6b7099;
+}
+
+@media (min-width: 768px) {
+  .bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}

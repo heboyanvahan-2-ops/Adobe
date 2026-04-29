@@ -1,0 +1,31 @@
+/* Container — обёртка с max-width и горизонтальными отступами. */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* На больших экранах — отступы побольше */
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: var(--space-6);
+  }
+}
+
+/* Узкий контейнер — для текстового контента */
+.narrow {
+  max-width: 800px;
+}
+
+/* Широкий контейнер — на всю ширину экрана с минимальными отступами */
+.wide {
+  max-width: 1440px;
+}
