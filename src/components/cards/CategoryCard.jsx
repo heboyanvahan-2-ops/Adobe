@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/CategoryCard.module.css';
 
@@ -73,4 +74,7 @@ function CategoryCard({ category, className = '' }) {
   );
 }
 
-export default CategoryCard;
+// memo нужен потому, что массив categories из products.js статичный —
+// ссылки на category-объекты стабильны между рендерами HomePage,
+// и React не должен заново перерисовывать 5 крупных карточек.
+export default memo(CategoryCard);

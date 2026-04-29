@@ -1,0 +1,117 @@
+/*
+ * FeatureCard.module.css
+ *
+ * Карточка одной возможности продукта (на ProductDetailPage).
+ * Цвет акцента подаётся через CSS-переменную --accent.
+ */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  background-color: var(--light-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    transform   220ms ease-out,
+    box-shadow  300ms ease-out,
+    border-color 200ms ease-out;
+}
+
+/* Цветная полоска слева — короткая в покое, расползается при hover */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--accent, var(--primary-red));
+  transform-origin: top;
+  transform: scaleY(0.35);
+  transition: transform 350ms ease-out;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    var(--shadow-lg),
+    0 0 0 1px color-mix(in srgb, var(--accent, var(--primary-red)) 35%, transparent);
+  border-color: transparent;
+}
+
+.card:hover::before {
+  transform: scaleY(1);
+}
+
+/* ---------- Номер-бейдж ---------- */
+
+.indexBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+
+  min-width: 44px;
+  height: 32px;
+  padding: 0 12px;
+
+  border-radius: var(--radius-full);
+  background-color: color-mix(
+    in srgb,
+    var(--accent, var(--primary-red)) 12%,
+    transparent
+  );
+  color: var(--accent, var(--primary-red));
+
+  font-family: var(--font-mono, monospace);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  margin-bottom: var(--space-1);
+  transition: transform 250ms ease-out;
+}
+
+.card:hover .indexBadge {
+  transform: scale(1.06);
+}
+
+/* Фоллбэк, если color-mix не поддерживается */
+@supports not (background: color-mix(in srgb, red 10%, transparent)) {
+  .indexBadge {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ---------- Текст ---------- */
+
+.title {
+  margin: 0;
+  font-size: var(--fs-base);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-dark);
+  letter-spacing: -0.005em;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: var(--fs-lg);
+  }
+}
+
+.desc {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  color: var(--text-light);
+}

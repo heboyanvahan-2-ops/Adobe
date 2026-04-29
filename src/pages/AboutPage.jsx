@@ -121,10 +121,10 @@ const T = {
     title: 'Adobe թվերով',
     subtitle: 'Համաշխարհային մասշտաբը մեկ հայացքով։',
     items: [
-      { value: '25 000+', label: 'աշխատակից',    icon: '👨‍💼', color: '#FF0000' },
-      { value: '5մլն+',  label: 'օգտատեր',        icon: '👥',   color: '#00CC66' },
-      { value: '60+',    label: 'արտադրանք',      icon: '🎯',   color: '#00A0DE' },
-      { value: '180+',   label: 'երկիր',          icon: '🌍',   color: '#9D4EDD' },
+      { value: '25 000+', label: 'աշխատակից', color: '#FF0000' },
+      { value: '5մլն+',   label: 'օգտատեր',    color: '#00CC66' },
+      { value: '60+',     label: 'արտադրանք',  color: '#00A0DE' },
+      { value: '180+',    label: 'երկիր',      color: '#9D4EDD' },
     ],
   },
 

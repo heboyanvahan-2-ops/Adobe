@@ -1,18 +1,39 @@
-/* Navigation — адаптивное меню с мобильным выезжающим панельным видом. */
+/*
+ * Navigation.module.css
+ *
+ * Адаптивная навигация Adobe Showcase.
+ *
+ * Логика отображения:
+ *   • Mobile  (< 1024px) — бургер открывает выезжающую панель
+ *                          с плоским списком ссылок.
+ *                          Категории отображаются под маленьким
+ *                          заголовком-секцией и имеют цветные точки.
+ *
+ *   • Desktop (≥ 1024px) — горизонтальная навигация:
+ *                          Главная · О нас · Կատեգորիաներ ▾ · Կապ
+ *                          Категории скрыты в dropdown-панели справа.
+ *
+ * Active-состояние — НЕ кричащий красный фон, а тонкое подчёркивание
+ * (псевдо-элемент ::after) и красный текст. Так визуально куда чище.
+ */
+
+/* ============================================================
+   Базовый layout (mobile-first)
+   ============================================================ */
 
 .nav {
   display: flex;
   align-items: center;
 }
 
-/* На мобильных — скрытое меню, открывается поверх контента */
+/* ----- Список ссылок (на мобильных = выдвижная панель) ----- */
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-1);
   list-style: none;
   margin: 0;
-  padding: var(--space-6) var(--space-5);
+  padding: var(--space-5) var(--space-4) var(--space-7);
 
   position: fixed;
   top: var(--header-height);
@@ -33,26 +54,185 @@
   transform: translateX(0);
 }
 
+.item {
+  list-style: none;
+}
+
+/* ============================================================
+   Ссылка (общий стиль для всех ссылок и кнопки-триггера группы)
+   ============================================================ */
+
 .link {
-  display: block;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+
   padding: var(--space-3) var(--space-4);
   font-size: var(--fs-md);
   font-weight: 500;
   color: var(--text-dark);
+  white-space: nowrap;
+  text-decoration: none;
+
+  background-color: transparent;
+  border: none;
   border-radius: var(--radius-md);
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .link:hover {
   background-color: var(--light-surface);
+  color: var(--text-dark);
 }
 
+/* Active-состояние: тонкое подчёркивание + цвет, БЕЗ фона-pill. */
 .linkActive {
   color: var(--primary-red);
+  background-color: transparent;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  height: 2px;
+  width: 50%;
+  background-color: var(--primary-red);
+  border-radius: 2px;
+
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 220ms ease-out;
+  pointer-events: none;
+}
+
+.linkActive::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* На мобильных подчёркивание выглядит лишним — там удобнее лёгкий фон. */
+.linkActive {
   background-color: rgba(255, 0, 0, 0.06);
 }
 
-/* Кнопка-бургер */
+@media (min-width: 1024px) {
+  /* На десктопе возвращаем чистое подчёркивание, без фона. */
+  .linkActive {
+    background-color: transparent;
+  }
+}
+
+/* ============================================================
+   Группа «Կատեգորիաներ»
+   ============================================================ */
+
+.groupItem {
+  position: relative;
+  list-style: none;
+}
+
+/* Триггер показываем только на десктопе — см. media-query ниже. */
+.groupTrigger {
+  display: none;
+}
+
+/* Mobile: заголовок секции — небольшой uppercase-ярлык */
+.mobileGroupTitle {
+  display: block;
+  padding: var(--space-4) var(--space-4) var(--space-2);
+  margin-top: var(--space-2);
+
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-light);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Список пунктов группы (на мобильных всегда виден; на десктопе — dropdown) */
+.groupList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Пункт внутри группы (на мобильных — обычная ссылка) */
+.groupLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: var(--text-dark);
+  white-space: nowrap;
+  text-decoration: none;
+
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.groupLink:hover {
+  background-color: var(--light-surface);
+}
+
+.groupLinkActive {
+  color: var(--accent, var(--primary-red));
+  background-color: color-mix(
+    in srgb,
+    var(--accent, var(--primary-red)) 10%,
+    transparent
+  );
+}
+
+.colorDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--accent, var(--primary-red));
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px color-mix(
+    in srgb,
+    var(--accent, var(--primary-red)) 25%,
+    transparent
+  );
+  transition: transform 200ms ease-out;
+}
+
+.groupLink:hover .colorDot {
+  transform: scale(1.18);
+}
+
+@supports not (background: color-mix(in srgb, red 10%, transparent)) {
+  .groupLinkActive {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  .colorDot {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.groupLinkLabel {
+  flex: 1;
+}
+
+/* ============================================================
+   Бургер-кнопка
+   ============================================================ */
+
 .burger {
   width: 40px;
   height: 40px;
@@ -61,7 +241,10 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  background-color: transparent;
+  border: none;
   border-radius: var(--radius-md);
+  cursor: pointer;
   transition: background-color var(--transition-fast);
 }
 
@@ -90,7 +273,10 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ---------- Десктоп: горизонтальное меню ---------- */
+/* ============================================================
+   Десктоп (≥ 1024px) — горизонтальный layout с dropdown
+   ============================================================ */
+
 @media (min-width: 1024px) {
   .burger {
     display: none;
@@ -99,16 +285,105 @@
   .list {
     position: static;
     flex-direction: row;
+    align-items: center;
+    gap: var(--space-1);
+
     background-color: transparent;
     border: none;
     padding: 0;
-    gap: var(--space-2);
-    transform: none;
     overflow: visible;
+
+    transform: none;
+  }
+
+  .item {
+    display: flex;
   }
 
   .link {
-    padding: var(--space-2) var(--space-4);
+    width: auto;
+    padding: 8px 14px;
     font-size: var(--fs-sm);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  /* Скрываем мобильный заголовок секции и показываем триггер */
+  .mobileGroupTitle {
+    display: none;
+  }
+
+  .groupTrigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .chevron {
+    transition: transform 220ms ease-out;
+    flex-shrink: 0;
+  }
+
+  .groupTriggerOpen .chevron {
+    transform: rotate(-180deg);
+  }
+
+  /* Dropdown-панель */
+  .groupList {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+
+    min-width: 260px;
+    background-color: rgba(255, 255, 255, 0.96);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 6px;
+    box-shadow:
+      0 12px 32px -8px rgba(10, 14, 39, 0.18),
+      0 2px 8px rgba(10, 14, 39, 0.06);
+
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition:
+      opacity 200ms ease-out,
+      transform 200ms ease-out;
+    z-index: 60;
+  }
+
+  .groupListOpen {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .groupLink {
+    padding: 10px 12px;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+  }
+
+  /* На десктопе у dropdown'а свои подчёркивания не нужны */
+  .groupLink::after {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Очень узкие экраны (< 360px) — компактный padding
+   ============================================================ */
+@media (max-width: 359px) {
+  .list {
+    padding: var(--space-4) var(--space-3) var(--space-6);
+  }
+
+  .link,
+  .groupLink {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--fs-base);
   }
 }

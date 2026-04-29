@@ -1,7 +1,6 @@
 import PageLayout from '../components/layouts/PageLayout';
 import Container from '../components/common/Container';
 import Hero from '../components/sections/Hero';
-import Stats from '../components/sections/Stats';
 import CTASection from '../components/sections/CTASection';
 import Grid from '../components/layouts/Grid';
 import CategoryCard from '../components/cards/CategoryCard';
@@ -12,10 +11,9 @@ import styles from '../styles/HomePage.module.css';
  * HomePage — главная страница Adobe Showcase.
  *
  * Структура:
- *   1. Hero      — большой светлый баннер с заголовком и двумя CTA-кнопками.
- *   2. Stats     — 4 карточки статистики (продукты, пользователи, страны, год).
- *   3. Categories — сетка из 5 CategoryCard (по данным из products.js).
- *   4. CTASection — финальный «Сегодня же приступайте» с кнопкой к Creative Cloud.
+ *   1. Hero       — большой светлый баннер с заголовком и двумя CTA-кнопками.
+ *   2. Categories — сетка из 5 CategoryCard (по данным из products.js).
+ *   3. CTASection — финальный «Сегодня же приступайте» с кнопкой к Creative Cloud.
  *
  * Все армянские тексты вынесены в один объект T внутри файла —
  * легко поддерживать и переводить на другие языки в будущем.
@@ -35,17 +33,6 @@ const T = {
       text: 'Դիտել արտադրանքները',
       action: '/creative-cloud',
     },
-  },
-
-  stats: {
-    title: 'Adobe թվերով',
-    subtitle: 'Ընկերության մասշտաբն ու ներկայությունը աշխարհում։',
-    items: [
-      { value: '30+', label: 'արտադրանք',           icon: '🎯', color: '#00A0DE' },
-      { value: '5մլն+', label: 'օգտատեր',           icon: '👥', color: '#00CC66' },
-      { value: '180+', label: 'երկիր',              icon: '🌍', color: '#9D4EDD' },
-      { value: '1982', label: 'հիմնադրման տարեթիվ', icon: '🏛️', color: '#FF6B35' },
-    ],
   },
 
   categories: {
@@ -86,15 +73,7 @@ function HomePage() {
         backgroundColor="linear-gradient(135deg, #ffffff 0%, #f7f7f9 60%, #fff5f5 100%)"
       />
 
-      {/* 2) Статистика */}
-      <Stats
-        title={T.stats.title}
-        subtitle={T.stats.subtitle}
-        items={T.stats.items}
-        background="light"
-      />
-
-      {/* 3) Категории */}
+      {/* 2) Категории */}
       <section className={styles.categoriesSection}>
         <Container>
           <div className={styles.sectionHeader}>
@@ -118,7 +97,7 @@ function HomePage() {
         </Container>
       </section>
 
-      {/* 4) CTA — финальный призыв */}
+      {/* 3) CTA — финальный призыв */}
       <CTASection
         title={T.cta.title}
         subtitle={T.cta.subtitle}

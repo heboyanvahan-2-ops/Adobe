@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styles from '../../styles/StatCard.module.css';
 
 /**
@@ -33,4 +34,4 @@ function StatCard({ value, label, icon, color, className = '' }) {
   );
 }
 
-export default StatCard;
+export default memo(StatCard);

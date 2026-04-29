@@ -1,0 +1,284 @@
+/*
+ * ProductDetailPage.module.css
+ * Стили для универсальной страницы продукта /product/:id.
+ */
+
+/* ============================================================
+   1) Главная информация о продукте (под Hero)
+   ============================================================ */
+
+.main {
+  padding: var(--space-7) 0;
+  background-color: var(--light-bg);
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: var(--space-9) 0;
+  }
+}
+
+.mainGrid {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .mainGrid {
+    /* Слева: фирменный логотип-плашка + цена. Справа: описание. */
+    grid-template-columns: 320px 1fr;
+    gap: var(--space-7);
+  }
+}
+
+/* ---------- Левая колонка: логотип-плашка + цена ---------- */
+
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: sticky;
+  top: calc(var(--header-height, 64px) + var(--space-4));
+}
+
+.brandPlate {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  background-color: var(--accent, var(--primary-red));
+  color: #fff;
+
+  font-family: var(--font-display, var(--font-base));
+  font-weight: 800;
+  font-size: clamp(72px, 12vw, 128px);
+  letter-spacing: -0.02em;
+
+  box-shadow:
+    0 18px 40px -16px color-mix(in srgb, var(--accent, var(--primary-red)) 75%, transparent),
+    0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  overflow: hidden;
+}
+
+/* Декоративный «блик» в углу плашки */
+.brandPlate::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -30%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+@supports not (background: color-mix(in srgb, red 75%, transparent)) {
+  .brandPlate {
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+/* ---------- Карточка с ценой ---------- */
+
+.priceCard {
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--light-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+}
+
+.priceLabel {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+
+.priceValue {
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Правая колонка: бейдж категории + описание ---------- */
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.categoryBadge {
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background-color: color-mix(
+    in srgb,
+    var(--accent, var(--primary-red)) 12%,
+    transparent
+  );
+  color: var(--accent, var(--primary-red));
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  text-decoration: none;
+  transition: background-color 200ms ease-out, transform 150ms ease-out;
+}
+
+.categoryBadge:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--accent, var(--primary-red)) 20%,
+    transparent
+  );
+  transform: translateX(2px);
+}
+
+@supports not (background: color-mix(in srgb, red 10%, transparent)) {
+  .categoryBadge {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.shortDesc {
+  margin: 0;
+  font-size: var(--fs-lg);
+  line-height: 1.5;
+  color: var(--text-dark);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+@media (min-width: 768px) {
+  .shortDesc {
+    font-size: var(--fs-xl);
+  }
+}
+
+.fullDesc {
+  margin: 0;
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  color: var(--text-light);
+}
+
+/* ============================================================
+   2) Секция «Возможности» (features)
+   ============================================================ */
+
+.features {
+  padding: var(--space-7) 0;
+  background-color: var(--light-surface);
+  border-block: 1px solid var(--border-color);
+}
+
+@media (min-width: 768px) {
+  .features {
+    padding: var(--space-9) 0;
+  }
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: var(--space-7);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.sectionSubtitle {
+  margin-top: var(--space-3);
+  color: var(--text-light);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   3) Секция «Кому пригодится» (usedBy)
+   ============================================================ */
+
+.usedBy {
+  padding: var(--space-7) 0;
+  background-color: var(--light-bg);
+}
+
+@media (min-width: 768px) {
+  .usedBy {
+    padding: var(--space-9) 0;
+  }
+}
+
+.usedByList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.usedByChip {
+  position: relative;
+  padding: 10px 22px 10px 34px;
+  background-color: var(--light-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--text-dark);
+  transition:
+    transform 200ms ease-out,
+    box-shadow 250ms ease-out,
+    border-color 200ms ease-out;
+}
+
+/* Цветная точка слева в чипе */
+.usedByChip::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent, var(--primary-red));
+}
+
+.usedByChip:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent, var(--primary-red));
+}
+
+/* ============================================================
+   4) Секция «Похожие продукты»
+   ============================================================ */
+
+.similar {
+  padding: var(--space-7) 0;
+  background-color: var(--light-surface);
+  border-top: 1px solid var(--border-color);
+}
+
+@media (min-width: 768px) {
+  .similar {
+    padding: var(--space-9) 0;
+  }
+}

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/ProductCard.module.css';
 
@@ -73,4 +74,8 @@ function ProductCard({ product, className = '' }) {
   );
 }
 
-export default ProductCard;
+// Карточки рендерятся пачками (до 7 за раз). Данные приходят
+// из статического products.js — ссылки на объекты не меняются между
+// рендерами родителя, поэтому memo полностью предотвращает повторный
+// рендер карточек, когда меняется только что-то снаружи.
+export default memo(ProductCard);
