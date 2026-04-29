@@ -6,14 +6,14 @@ import styles from '../../styles/Navigation.module.css';
  * Список ссылок меню. Изменяя этот массив, легко добавить/убрать пункт навигации.
  */
 const navLinks = [
-  { to: '/', label: 'Главная', end: true },
-  { to: '/about', label: 'О Adobe' },
+  { to: '/', label: 'Գլխավոր', end: true },
+  { to: '/about', label: 'Adobe-ի մասին' },
   { to: '/creative-cloud', label: 'Creative Cloud' },
   { to: '/document-cloud', label: 'Document Cloud' },
   { to: '/experience-cloud', label: 'Experience Cloud' },
   { to: '/content-commerce', label: 'Content & Commerce' },
   { to: '/3d-ai', label: '3D & AI' },
-  { to: '/contact', label: 'Контакты' },
+  { to: '/contact', label: 'Կապ' },
 ];
 
 /**
@@ -39,11 +39,11 @@ function Navigation() {
   }, [isOpen]);
 
   return (
-    <nav className={styles.nav} aria-label="Главная навигация">
+    <nav className={styles.nav} aria-label="Հիմնական նավիգացիա">
       <button
         type="button"
         className={`${styles.burger} ${isOpen ? styles.burgerOpen : ''}`}
-        aria-label={isOpen ? 'Закрыть меню' : 'Открыть меню'}
+        aria-label={isOpen ? 'Փակել մենյուն' : 'Բացել մենյուն'}
         aria-expanded={isOpen}
         onClick={() => setIsOpen((v) => !v)}
       >

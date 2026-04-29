@@ -1,0 +1,250 @@
+/*
+ * Timeline.module.css
+ *
+ * Вертикальная временная шкала.
+ *
+ * Десктоп (>= 768px):
+ *   ┌── card (left) ──┐ │ ┌── card (right) ──┐
+ *                     │ │
+ *                     ●
+ *                     │
+ *
+ * Мобильный (< 768px):
+ *   │  ●  ┌── card ──┐
+ *   │     │          │
+ *   │  ●  ┌── card ──┐
+ *
+ * Используется CSS-переменная --accent (передаётся из JSX) для подсветки
+ * года и точки на шкале фирменным цветом события.
+ */
+
+.section {
+  padding: var(--space-7) 0;
+  background-color: var(--light-bg);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: var(--space-9) 0;
+  }
+}
+
+/* ---------- Заголовок секции ---------- */
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-7);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin-top: var(--space-3);
+  color: var(--text-light);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+}
+
+/* ---------- Контейнер шкалы ---------- */
+
+.list {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+/* Центральная вертикальная линия */
+.list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;       /* mobile: линия слева */
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--border-color) 8%,
+    var(--border-color) 92%,
+    transparent
+  );
+}
+
+/* На десктопе линия по центру */
+@media (min-width: 768px) {
+  .list::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Элемент списка ---------- */
+
+.item {
+  position: relative;
+  padding-left: 64px;     /* mobile: место под линию + точку */
+  padding-bottom: var(--space-5);
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .item {
+    padding-left: 0;
+    padding-bottom: var(--space-7);
+    width: 50%;
+  }
+
+  /* Карточки чередуются: одна слева, другая справа от центральной линии */
+  .side_left {
+    padding-right: var(--space-6);
+    margin-left: 0;
+  }
+
+  .side_right {
+    padding-left: var(--space-6);
+    margin-left: 50%;
+  }
+}
+
+/* ---------- Точка (маркер на линии) ---------- */
+
+.dot {
+  position: absolute;
+  top: 8px;
+  left: 17px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--accent, var(--primary-red));
+  box-shadow:
+    0 0 0 4px var(--light-bg),
+    0 0 0 6px var(--accent, var(--primary-red)),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  transition: transform var(--transition-base);
+}
+
+.item:hover .dot {
+  transform: scale(1.25);
+}
+
+@media (min-width: 768px) {
+  /* Десктоп: точка по центру (на самой линии) */
+  .side_left .dot {
+    left: auto;
+    right: -8px;
+    transform: translateX(0);
+  }
+
+  .side_right .dot {
+    left: -8px;
+    right: auto;
+  }
+
+  .side_left:hover .dot {
+    transform: scale(1.25);
+  }
+}
+
+/* ---------- Карточка события ---------- */
+
+.card {
+  position: relative;
+  background-color: var(--light-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform   200ms ease-out,
+    box-shadow  300ms ease-out,
+    border-color 200ms ease-out;
+}
+
+.item:hover .card {
+  transform: translateY(-3px);
+  box-shadow:
+    var(--shadow-lg),
+    0 0 0 1px var(--accent, transparent);
+  border-color: transparent;
+}
+
+/* Маленький «хвостик»-стрелка от карточки к линии (только на десктопе) */
+@media (min-width: 768px) {
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    width: 10px;
+    height: 10px;
+    background-color: inherit;
+    border: 1px solid var(--border-color);
+    transform: rotate(45deg);
+  }
+
+  .side_left .card::before {
+    right: -6px;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .side_right .card::before {
+    left: -6px;
+    border-right: none;
+    border-top: none;
+  }
+
+  .item:hover .card::before {
+    border-color: transparent;
+  }
+}
+
+/* ---------- Год ---------- */
+
+.year {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent, var(--primary-red));
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-2);
+}
+
+/* ---------- Заголовок события ---------- */
+
+.eventTitle {
+  margin: 0 0 var(--space-2);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .eventTitle {
+    font-size: var(--fs-xl);
+  }
+}
+
+/* ---------- Описание ---------- */
+
+.eventDesc {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  color: var(--text-light);
+}

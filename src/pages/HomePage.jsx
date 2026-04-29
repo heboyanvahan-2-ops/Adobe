@@ -1,36 +1,131 @@
 import PageLayout from '../components/layouts/PageLayout';
 import Container from '../components/common/Container';
-import Button from '../components/common/Button';
-import styles from '../styles/PagePlaceholder.module.css';
+import Hero from '../components/sections/Hero';
+import Stats from '../components/sections/Stats';
+import CTASection from '../components/sections/CTASection';
+import Grid from '../components/layouts/Grid';
+import CategoryCard from '../components/cards/CategoryCard';
+import { categories } from '../data/products';
+import styles from '../styles/HomePage.module.css';
 
 /**
- * HomePage — главная страница.
- * Сейчас — заготовка с приветствием и CTA-кнопками.
- * Позже здесь появятся: Hero, 5 CategoryCard, секция Stats, CTASection.
+ * HomePage — главная страница Adobe Showcase.
+ *
+ * Структура:
+ *   1. Hero      — большой светлый баннер с заголовком и двумя CTA-кнопками.
+ *   2. Stats     — 4 карточки статистики (продукты, пользователи, страны, год).
+ *   3. Categories — сетка из 5 CategoryCard (по данным из products.js).
+ *   4. CTASection — финальный «Сегодня же приступайте» с кнопкой к Creative Cloud.
+ *
+ * Все армянские тексты вынесены в один объект T внутри файла —
+ * легко поддерживать и переводить на другие языки в будущем.
  */
+
+// Тексты страницы (на армянском, как договорились).
+// Названия продуктов и брендов остаются в латинице (Adobe, Creative Cloud).
+const T = {
+  hero: {
+    badge: 'Դիպլոմային աշխատանք',
+    title: 'Adobe Creative Cloud',
+    subtitle:
+      'Մասնագիտական մակարդակի ստեղծագործական գործիքներ՝ դիզայնի, ' +
+      'լուսանկարչության, տեսանյութի և բրենդինգի համար։',
+    primary: { text: 'Adobe-ի մասին', action: '/about' },
+    secondary: {
+      text: 'Դիտել արտադրանքները',
+      action: '/creative-cloud',
+    },
+  },
+
+  stats: {
+    title: 'Adobe թվերով',
+    subtitle: 'Ընկերության մասշտաբն ու ներկայությունը աշխարհում։',
+    items: [
+      { value: '30+', label: 'արտադրանք',           icon: '🎯', color: '#00A0DE' },
+      { value: '5մլն+', label: 'օգտատեր',           icon: '👥', color: '#00CC66' },
+      { value: '180+', label: 'երկիր',              icon: '🌍', color: '#9D4EDD' },
+      { value: '1982', label: 'հիմնադրման տարեթիվ', icon: '🏛️', color: '#FF6B35' },
+    ],
+  },
+
+  categories: {
+    title: 'Արտադրանքի 5 կատեգորիա',
+    subtitle:
+      'Յուրաքանչյուր կատեգորիա Adobe-ի առանձին տիեզերք է։ ' +
+      'Ընտրեք հետաքրքիրը և սուզվեք։',
+  },
+
+  cta: {
+    title: 'Սկսեք օգտագործել Adobe-ն այսօր',
+    subtitle:
+      'Ընտրեք առաջին կատեգորիան և բացահայտեք ստեղծագործության ' +
+      'ու նորարարության համաշխարհային ստանդարտը։',
+    primary: {
+      text: 'Անցնել Creative Cloud',
+      action: '/creative-cloud',
+    },
+    secondary: {
+      text: 'Կապ հաստատել',
+      action: '/contact',
+    },
+  },
+};
+
 function HomePage() {
   return (
-    <PageLayout title="Главная">
-      <section className={`${styles.section} animate-fade-in`}>
+    <PageLayout title="Գլխավոր">
+      {/* 1) Hero — светлый, с фирменным акцентом */}
+      <Hero
+        badge={T.hero.badge}
+        title={T.hero.title}
+        subtitle={T.hero.subtitle}
+        cta={T.hero.primary}
+        secondaryCta={T.hero.secondary}
+        height="full"
+        theme="light"
+        backgroundColor="linear-gradient(135deg, #ffffff 0%, #f7f7f9 60%, #fff5f5 100%)"
+      />
+
+      {/* 2) Статистика */}
+      <Stats
+        title={T.stats.title}
+        subtitle={T.stats.subtitle}
+        items={T.stats.items}
+        background="light"
+      />
+
+      {/* 3) Категории */}
+      <section className={styles.categoriesSection}>
         <Container>
-          <div className={styles.content}>
-            <span className={styles.badge}>Дипломная работа</span>
-            <h1 className={styles.title}>Adobe Showcase</h1>
-            <p className={styles.description}>
-              Интерактивная демонстрация 30+ продуктов Adobe из 5 категорий —
-              от классики Photoshop и Illustrator до новейшего ИИ Firefly.
+          <div className={styles.sectionHeader}>
+            <h2 className={`${styles.sectionTitle} animate-fade-in-up`}>
+              {T.categories.title}
+            </h2>
+            <p className={`${styles.sectionSubtitle} animate-fade-in-up delay-100`}>
+              {T.categories.subtitle}
             </p>
-            <div className={styles.actions}>
-              <Button to="/about" variant="primary" size="lg">
-                О компании Adobe
-              </Button>
-              <Button to="/creative-cloud" variant="outline" size="lg">
-                Смотреть продукты
-              </Button>
-            </div>
           </div>
+
+          <Grid columns={{ sm: 1, md: 2, lg: 3 }} gap="lg">
+            {categories.map((category, i) => (
+              <CategoryCard
+                key={category.id}
+                category={category}
+                className={`animate-fade-in-up delay-${Math.min((i + 1) * 100, 600)}`}
+              />
+            ))}
+          </Grid>
         </Container>
       </section>
+
+      {/* 4) CTA — финальный призыв */}
+      <CTASection
+        title={T.cta.title}
+        subtitle={T.cta.subtitle}
+        cta={T.cta.primary}
+        secondaryCta={T.cta.secondary}
+        background="gradient"
+      />
     </PageLayout>
   );
 }

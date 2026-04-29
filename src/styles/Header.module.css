@@ -1,15 +1,44 @@
-/* Header — фиксированная шапка с логотипом и навигацией. */
+/*
+ * Header.module.css
+ *
+ * Стили для шапки сайта Adobe Showcase.
+ * Используется flexbox для выравнивания логотипа и навигации.
+ * Полупрозрачный фон + backdrop-blur — современный «glass»-эффект.
+ */
 
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
+
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+
   border-bottom: 1px solid var(--border-color);
   height: var(--header-height);
+
+  transition: box-shadow var(--transition-base),
+              background-color var(--transition-base);
 }
+
+/* Тень добавляем только когда страница прокручена.
+   В современных браузерах это можно сделать без JS через :has,
+   но мы оставим простой постоянный border, чтобы не ломаться в старых. */
+.header::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(10, 14, 39, 0.08),
+    transparent
+  );
+}
+
+/* ----- Внутренний layout: логотип слева, навигация справа ----- */
 
 .inner {
   height: 100%;
@@ -19,6 +48,8 @@
   gap: var(--space-4);
 }
 
+/* ----- Логотип ----- */
+
 .logo {
   display: inline-flex;
   align-items: center;
@@ -27,28 +58,53 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-dark);
+
+  transition: transform var(--transition-fast);
 }
 
+.logo:hover {
+  color: var(--text-dark);
+  transform: translateY(-1px);
+}
+
+.logo:hover .logoMark {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+/* SVG-логотип */
 .logoMark {
   width: 32px;
   height: 32px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--primary-red), #b30000);
-  color: #fff;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-sans);
-  font-size: 18px;
-  font-weight: 800;
-  box-shadow: var(--shadow-md);
+  color: var(--primary-red);
+  filter: drop-shadow(0 2px 4px rgba(255, 0, 0, 0.25));
+  transition: transform var(--transition-base);
+  flex-shrink: 0;
 }
 
+/* Текст логотипа */
 .logoText {
   display: none;
+  white-space: nowrap;
 }
 
+/* Акцентная часть текста — слово "Showcase" более лёгкого начертания */
+.logoAccent {
+  font-weight: 400;
+  color: var(--text-light);
+  margin-left: 4px;
+}
+
+/* На экранах от 480px показываем текст рядом с лого */
 @media (min-width: 480px) {
   .logoText {
     display: inline;
+  }
+}
+
+/* На больших экранах — увеличиваем логотип */
+@media (min-width: 1024px) {
+  .logoMark {
+    width: 36px;
+    height: 36px;
   }
 }

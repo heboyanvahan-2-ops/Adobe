@@ -72,9 +72,10 @@
   --space-9: 96px;
   --space-10: 128px;
 
-  /* Контейнер */
+  /* Контейнер: max-width 1200px, padding 20px по умолчанию (mobile-first).
+     На больших экранах padding увеличивается через media-queries в Container.module.css. */
   --container-max: 1200px;
-  --container-padding: var(--space-4);
+  --container-padding: 20px;
 
   /* Скорости анимаций */
   --transition-fast: 150ms ease-out;

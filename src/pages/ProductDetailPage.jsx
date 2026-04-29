@@ -39,28 +39,28 @@ function ProductDetailPage() {
             <h1 className={styles.title}>{product.name}</h1>
             <p className={styles.description}>{product.fullDesc}</p>
 
-            <h3 style={{ marginTop: 24, marginBottom: 12 }}>Ключевые возможности</h3>
+            <h3 style={{ marginTop: 24, marginBottom: 12 }}>Հիմնական հնարավորությունները</h3>
             <ul style={{ textAlign: 'left', maxWidth: 520, margin: '0 auto' }}>
               {product.features.map((f) => (
                 <li key={f} style={{ padding: '4px 0' }}>• {f}</li>
               ))}
             </ul>
 
-            <h3 style={{ marginTop: 24, marginBottom: 12 }}>Кому пригодится</h3>
+            <h3 style={{ marginTop: 24, marginBottom: 12 }}>Ում համար է</h3>
             <p className="text-muted">{product.usedBy.join(' · ')}</p>
 
             <p className="text-muted" style={{ marginTop: 12 }}>
-              <strong>Цена:</strong> {product.price}
+              <strong>Գին՝</strong> {product.price}
             </p>
 
             <div className={styles.actions} style={{ marginTop: 32 }}>
               {category && (
                 <Button to={`/${category.id}`} variant="primary">
-                  Все продукты {category.name}
+                  {category.name}-ի բոլոր արտադրանքները
                 </Button>
               )}
               <Button to="/" variant="outline">
-                На главную
+                Դեպի գլխավոր
               </Button>
             </div>
           </div>

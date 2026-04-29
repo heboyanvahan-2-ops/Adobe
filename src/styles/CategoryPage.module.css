@@ -1,0 +1,80 @@
+/*
+ * CategoryPage.module.css
+ *
+ * Общие стили для страниц категорий (Creative Cloud, Document Cloud,
+ * Experience Cloud, Content & Commerce, 3D & AI).
+ *
+ * Используется на всех 5 страницах, чтобы не дублировать вёрстку.
+ * Файл единый, потому что страницы выглядят одинаково — разница только
+ * в данных категории.
+ */
+
+/* ---------- Описание категории под Hero ---------- */
+
+.intro {
+  padding: var(--space-7) 0;
+}
+
+@media (min-width: 768px) {
+  .intro {
+    padding: var(--space-8) 0 var(--space-7);
+  }
+}
+
+.introContent {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.introTitle {
+  margin-bottom: var(--space-3);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.introText {
+  font-size: var(--fs-md);
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
+@media (min-width: 768px) {
+  .introText {
+    font-size: var(--fs-lg);
+  }
+}
+
+/* ---------- Секция продуктов ---------- */
+
+.productsSection {
+  padding: 0 0 var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .productsSection {
+    padding: 0 0 var(--space-9);
+  }
+}
+
+.productsHeader {
+  text-align: center;
+  margin-bottom: var(--space-7);
+}
+
+.productsTitle {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.productsCount {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: var(--light-surface);
+  color: var(--text-light);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}

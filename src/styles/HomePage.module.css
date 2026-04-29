@@ -1,0 +1,38 @@
+/*
+ * HomePage.module.css
+ * Стили только для HomePage (заголовки секций, отступы между секциями).
+ * Все «крупные» компоненты (Hero, Stats, CTASection, CategoryCard)
+ * имеют собственные CSS-модули — здесь только то, что специфично странице.
+ */
+
+/* ---------- Секция категорий ---------- */
+
+.categoriesSection {
+  padding: var(--space-8) 0;
+}
+
+@media (min-width: 768px) {
+  .categoriesSection {
+    padding: var(--space-9) 0;
+  }
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: var(--space-7);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.sectionSubtitle {
+  margin-top: var(--space-3);
+  color: var(--text-light);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+}

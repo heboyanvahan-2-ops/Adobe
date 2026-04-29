@@ -1,0 +1,55 @@
+/*
+ * Grid.module.css
+ *
+ * Адаптивная CSS Grid с настраиваемым числом колонок на каждом брейкпоинте.
+ *
+ * Колонки задаются через CSS-переменные, которые компонент Grid.jsx
+ * подставляет в inline-style. По умолчанию:
+ *   sm  (mobile, < 480px)        — 1 колонка
+ *   md  (tablet, >= 768px)       — 2 колонки
+ *   lg  (desktop, >= 1024px)     — 3 колонки
+ *   xl  (large desktop, >= 1280) — 4 колонки  (по желанию)
+ *
+ * Gap задаётся через --grid-gap.
+ */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols-sm, 1), minmax(0, 1fr));
+  gap: var(--grid-gap, var(--space-5));
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(var(--cols-xs, var(--cols-sm, 1)), minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(var(--cols-md, 2), minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(var(--cols-lg, 3), minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(var(--cols-xl, var(--cols-lg, 3)), minmax(0, 1fr));
+  }
+}
+
+/* ---------- Дополнительные модификаторы выравнивания ---------- */
+
+.alignStart  { align-items: start; }
+.alignCenter { align-items: center; }
+.alignEnd    { align-items: end; }
+
+.justifyStart  { justify-content: start; }
+.justifyCenter { justify-content: center; }
+.justifyEnd    { justify-content: end; }

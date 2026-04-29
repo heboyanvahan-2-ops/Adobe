@@ -1,0 +1,152 @@
+/*
+ * Highlights.module.css
+ *
+ * Секция «3 ключевых преимущества» на страницах категорий.
+ *
+ * Каждая карточка:
+ *   ┌──────────────────────────┐
+ *   │  ▢ icon (60x60)          │
+ *   │                          │
+ *   │  Title                   │
+ *   │  Description ...         │
+ *   └──────────────────────────┘
+ *
+ * Цвет акцента подаётся через CSS-переменную --accent (со страницы).
+ */
+
+.section {
+  padding: var(--space-6) 0 var(--space-8);
+  background-color: var(--light-bg);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: var(--space-7) 0 var(--space-9);
+  }
+}
+
+/* ---------- Заголовок секции ---------- */
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-7);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin-top: var(--space-3);
+  color: var(--text-light);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+}
+
+/* ---------- Карточка highlight'а ---------- */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-5);
+  background-color: var(--light-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    transform   220ms ease-out,
+    box-shadow  300ms ease-out,
+    border-color 200ms ease-out;
+}
+
+/* Тонкая цветная полоска сверху по фирменному цвету категории */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent, var(--primary-red)) 0%,
+    transparent 100%
+  );
+  transform-origin: left;
+  transform: scaleX(0.4);
+  transition: transform 350ms ease-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    var(--shadow-lg),
+    0 0 0 1px color-mix(in srgb, var(--accent, var(--primary-red)) 40%, transparent);
+  border-color: transparent;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ---------- Иконка ---------- */
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  /* «Туман» цвета категории под иконкой */
+  background: color-mix(in srgb, var(--accent, var(--primary-red)) 12%, transparent);
+  color: var(--accent, var(--primary-red));
+  /* Передаём цвет фона в иконку через переменную (нужно для NeuralNetIcon) */
+  --icon-bg: var(--light-bg);
+  transition: transform 350ms ease-out;
+}
+
+.card:hover .iconWrap {
+  transform: rotate(-4deg) scale(1.06);
+}
+
+/* ---------- Текст карточки ---------- */
+
+.cardTitle {
+  margin: 0;
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .cardTitle {
+    font-size: var(--fs-xl);
+  }
+}
+
+.cardDesc {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--text-light);
+  font-size: var(--fs-base);
+}
+
+/* Поддержка прозрачной заливки (если в браузере нет color-mix) */
+@supports not (background: color-mix(in srgb, red 10%, transparent)) {
+  .iconWrap {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+}

@@ -1,31 +1,41 @@
-/* Container — обёртка с max-width и горизонтальными отступами. */
+/*
+ * Container.module.css
+ *
+ * Container — центральная обёртка контента на странице.
+ *   max-width: 1200px;
+ *   margin:    0 auto;
+ *   padding:   0 20px;     (mobile-first; на больших экранах увеличивается)
+ */
 
 .container {
   width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
-  padding-inline: var(--container-padding);
+  max-width: var(--container-max);   /* 1200px */
+  margin-inline: auto;               /* центрирование по горизонтали */
+  padding-inline: var(--container-padding); /* 20px */
 }
 
-/* На больших экранах — отступы побольше */
+/* На планшетах увеличиваем боковые отступы для воздуха */
 @media (min-width: 768px) {
   .container {
-    padding-inline: var(--space-5);
+    padding-inline: var(--space-5);  /* 24px */
   }
 }
 
+/* На десктопах — ещё больше */
 @media (min-width: 1024px) {
   .container {
-    padding-inline: var(--space-6);
+    padding-inline: var(--space-6);  /* 32px */
   }
 }
 
-/* Узкий контейнер — для текстового контента */
+/* ---------- Варианты ширины ---------- */
+
+/* Узкий — для длинного текста (статьи, описание) */
 .narrow {
   max-width: 800px;
 }
 
-/* Широкий контейнер — на всю ширину экрана с минимальными отступами */
+/* Широкий — для секций с большим количеством контента */
 .wide {
   max-width: 1440px;
 }

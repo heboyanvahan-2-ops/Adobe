@@ -1,0 +1,307 @@
+/*
+ * Hero.module.css
+ *
+ * Стили большого баннера (Hero).
+ *
+ * Поведение:
+ *   - Mobile-first: на маленьких экранах высота ниже, шрифт меньше.
+ *   - Поддерживает 3 режима фона: defaultBg (градиент), backgroundColor, withImage.
+ *   - Декоративные «blob»-пятна в фоне создают глубину.
+ */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  /* Переходы — на случай, если родитель меняет какие-то свойства */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ---------- Темы ---------- */
+
+/* Тёмная (по умолчанию): белый текст на тёмном/цветном фоне */
+.themeDark {
+  color: #ffffff;
+}
+
+/* Светлая: тёмный текст на светлом фоне */
+.themeLight {
+  color: var(--text-dark);
+}
+
+/* ------------- Высоты (mobile-first) ------------- */
+
+/* Полноэкранный hero — занимает почти весь viewport */
+.height_full {
+  min-height: 480px;
+  padding: var(--space-7) 0;
+}
+
+/* Средний hero — 400-500px по запросу */
+.height_medium {
+  min-height: 400px;
+  padding: var(--space-7) 0;
+}
+
+/* Компактный hero — для внутренних страниц */
+.height_compact {
+  min-height: 280px;
+  padding: var(--space-6) 0;
+}
+
+/* На планшете и десктопе hero становится выше */
+@media (min-width: 768px) {
+  .height_full    { min-height: 640px; padding: var(--space-8) 0; }
+  .height_medium  { min-height: 460px; padding: var(--space-8) 0; }
+  .height_compact { min-height: 320px; padding: var(--space-7) 0; }
+}
+
+@media (min-width: 1024px) {
+  .height_full   { min-height: 80vh; padding: var(--space-9) 0; }
+  .height_medium { min-height: 500px; }
+}
+
+/* ------------- Фон по умолчанию: фирменный градиент ------------- */
+
+.defaultBg {
+  background:
+    radial-gradient(ellipse at top right, rgba(255, 0, 0, 0.35), transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(0, 160, 222, 0.35), transparent 55%),
+    linear-gradient(135deg, #0A0E27, #1a1f4a);
+}
+
+/* ------------- Затемнение поверх backgroundImage ------------- */
+
+.withImage::after,
+.overlay {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 14, 39, 0.55), rgba(10, 14, 39, 0.75));
+  z-index: 1;
+}
+
+.overlay {
+  pointer-events: none;
+}
+
+/* ------------- Декоративные blob-пятна ------------- */
+/* Создают ощущение глубины на градиентном фоне */
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+  animation: float 8s ease-in-out infinite;
+}
+
+.blob1 {
+  width: 280px;
+  height: 280px;
+  top: -80px;
+  left: -60px;
+  background: var(--primary-red);
+  animation-delay: 0s;
+}
+
+.blob2 {
+  width: 320px;
+  height: 320px;
+  bottom: -100px;
+  right: -80px;
+  background: var(--creative-blue);
+  animation-delay: 2s;
+}
+
+.blob3 {
+  width: 220px;
+  height: 220px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--ai-purple);
+  animation-delay: 4s;
+  opacity: 0.35;
+}
+
+/* На мобильных уменьшаем blob'ы, чтобы они не мешали */
+@media (max-width: 600px) {
+  .blob1 { width: 180px; height: 180px; }
+  .blob2 { width: 200px; height: 200px; }
+  .blob3 { width: 160px; height: 160px; }
+}
+
+/* В светлой теме blob-ы делаем намного прозрачнее, иначе фон становится грязным */
+.themeLight .blob {
+  opacity: 0.18;
+}
+
+.themeLight .blob3 {
+  opacity: 0.12;
+}
+
+/* В светлой теме затемняющий overlay убираем (фон и так светлый) */
+.themeLight.withImage::after,
+.themeLight .overlay {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.65));
+}
+
+/* ------------- Внутренний контейнер (поверх фона) ------------- */
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.alignCenter .inner {
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.alignLeft .inner {
+  align-items: flex-start;
+  text-align: left;
+  max-width: 720px;
+}
+
+/* ------------- Бейдж над заголовком ------------- */
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* В светлой теме бейдж — красный фон с белым текстом */
+.themeLight .badge {
+  background: var(--primary-red);
+  border-color: var(--primary-red);
+  color: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* ------------- Заголовок (mobile-first) ------------- */
+/* Mobile: 36px → Desktop: 60px+, как просили в запросе */
+
+.title {
+  font-size: clamp(2rem, 5vw + 1rem, 4rem);   /* 32px → 64px */
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0;
+
+  /* Цвет наследуется от .themeDark / .themeLight */
+  color: inherit;
+}
+
+/* На мобильных принудительно уменьшаем */
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;        /* 32px */
+    line-height: 1.15;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: clamp(2.5rem, 4vw, 3.75rem); /* 40px → 60px */
+  }
+}
+
+/* ------------- Подзаголовок ------------- */
+/* По запросу: 18-24px */
+
+.subtitle {
+  font-size: var(--fs-md);             /* 18px */
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 640px;
+  margin: 0;
+}
+
+/* В светлой теме подзаголовок — серый */
+.themeLight .subtitle {
+  color: var(--text-light);
+}
+
+@media (min-width: 768px) {
+  .subtitle {
+    font-size: var(--fs-lg);           /* 20px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .subtitle {
+    font-size: var(--fs-xl);           /* 24px */
+  }
+}
+
+/* В режиме left-выравнивания подзаголовок не центрируется */
+.alignLeft .subtitle {
+  margin-left: 0;
+}
+
+.alignCenter .subtitle {
+  margin-inline: auto;
+}
+
+/* ------------- Кнопки ------------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.alignCenter .actions {
+  justify-content: center;
+}
+
+/* На мобильных кнопки растягиваются на всю ширину для удобства тапа */
+@media (max-width: 480px) {
+  .actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions > * {
+    width: 100%;
+  }
+}
+
+/* ------------- Произвольный контент под кнопками ------------- */
+
+.children {
+  margin-top: var(--space-5);
+  width: 100%;
+}

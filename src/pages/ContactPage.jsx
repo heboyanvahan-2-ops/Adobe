@@ -10,15 +10,16 @@ import styles from '../styles/PagePlaceholder.module.css';
  */
 function ContactPage() {
   return (
-    <PageLayout title="Контакты">
+    <PageLayout title="Կապ">
       <section className={`${styles.section} animate-fade-in-up`}>
         <Container>
           <div className={styles.content}>
-            <span className={styles.badge}>Спасибо за внимание!</span>
-            <h1 className={styles.title}>Презентация завершена</h1>
+            <span className={styles.badge}>Շնորհակալություն ուշադրության համար։</span>
+            <h1 className={styles.title}>Ներկայացումն ավարտված է</h1>
             <p className={styles.description}>
-              Мы прошли путь от истории Adobe до новейших ИИ-инструментов Firefly.
-              Если хотите ещё раз вернуться к одной из категорий — выберите ниже.
+              Մենք անցանք ճանապարհ Adobe-ի պատմությունից մինչև Firefly-ի
+              նորագույն ԱԲ-գործիքները։ Եթե ցանկանում եք կրկին վերադառնալ
+              որևէ կատեգորիայի՝ ընտրեք ստորև։
             </p>
 
             <div className={styles.actions} style={{ marginTop: 24 }}>
@@ -36,7 +37,7 @@ function ContactPage() {
 
             <div className={styles.actions} style={{ marginTop: 32 }}>
               <Button to="/" variant="primary" size="lg">
-                Вернуться на главную
+                Վերադառնալ գլխավոր էջ
               </Button>
             </div>
           </div>
