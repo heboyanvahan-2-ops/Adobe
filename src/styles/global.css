@@ -23,6 +23,13 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+
+  /* Защита от случайного горизонтального скролла.
+     `clip` (вместо `hidden`) не создаёт нового scrolling-context,
+     поэтому `position: sticky` внутри страницы продолжает работать.
+     Для старых браузеров заявлен fallback на `hidden`. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -33,6 +40,17 @@ body {
   color: var(--text-dark);
   background-color: var(--light-bg);
   min-height: 100vh;
+
+  /* Дублируем clip и на body — браузеры применяют overflow-x по-разному
+     в зависимости от того, у html или у body он задан.
+     Это закрывает off-canvas меню, у которого transform: translateX(100%)
+     может выглядывать за правый край viewport. */
+  overflow-x: hidden;
+  overflow-x: clip;
+
+  /* Никакой текст не должен случайно ломать ширину viewport */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 img,

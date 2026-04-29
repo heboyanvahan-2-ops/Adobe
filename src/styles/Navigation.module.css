@@ -26,28 +26,58 @@
   align-items: center;
 }
 
-/* ----- Список ссылок (на мобильных = выдвижная панель) ----- */
+/* ----- Список ссылок (на мобильных = выдвижная панель) -----
+   Компактный режим: все 10 пунктов помещаются без скролла на стандартном
+   мобильном вьюпорте (~640px). На более коротких экранах скролл всё равно
+   возможен, но выглядит аккуратно (тонкий стилизованный скроллбар). */
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: 2px;
   list-style: none;
   margin: 0;
-  padding: var(--space-5) var(--space-4) var(--space-7);
+  padding: 12px 12px 20px;
 
   position: fixed;
   top: var(--header-height);
   left: 0;
-  right: 0;
-  bottom: 0;
+  /* width вместо right:0 — на случай, если ancestor (Header c backdrop-filter)
+     стал containing block: тогда right:0 анкорится к header'у, а не к viewport.
+     Width: 100vw гарантирует полную ширину окна в любом случае. */
+  width: 100vw;
+
+  /* Аналогично с высотой: вместо bottom:0 берём фиксированную высоту от
+     viewport. 100dvh — динамическая (учитывает скрытие/показ адресной строки
+     в мобильных браузерах), 100vh — фоллбэк для старых браузеров. */
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
 
   background-color: var(--light-bg);
   border-top: 1px solid var(--border-color);
+
   overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /* Тонкий скроллбар, если контент всё-таки не влез */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
 
   transform: translateX(100%);
   transition: transform var(--transition-base);
   z-index: 50;
+}
+
+.list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.18);
+  border-radius: 3px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .listOpen {
@@ -68,16 +98,17 @@
   align-items: center;
   width: 100%;
 
-  padding: var(--space-3) var(--space-4);
+  /* Компактнее по вертикали, чтобы все пункты помещались без скролла. */
+  padding: 11px 14px;
   font-size: var(--fs-md);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-dark);
   white-space: nowrap;
   text-decoration: none;
 
   background-color: transparent;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: 10px;
   cursor: pointer;
 
   transition:
@@ -96,35 +127,36 @@
   background-color: transparent;
 }
 
-.link::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -2px;
-  height: 2px;
-  width: 50%;
-  background-color: var(--primary-red);
-  border-radius: 2px;
-
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center;
-  transition: transform 220ms ease-out;
-  pointer-events: none;
-}
-
-.linkActive::after {
-  transform: translateX(-50%) scaleX(1);
-}
-
-/* На мобильных подчёркивание выглядит лишним — там удобнее лёгкий фон. */
+/* На мобильных активное состояние = лёгкий розовый фон.
+   Подчёркивание подключаем ТОЛЬКО на десктопе, чтобы не дублироваться. */
 .linkActive {
   background-color: rgba(255, 0, 0, 0.06);
 }
 
 @media (min-width: 1024px) {
-  /* На десктопе возвращаем чистое подчёркивание, без фона. */
+  /* Десктопный active: чистое подчёркивание (псевдо-элемент), без фона. */
   .linkActive {
     background-color: transparent;
+  }
+
+  .link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    height: 2px;
+    width: 50%;
+    background-color: var(--primary-red);
+    border-radius: 2px;
+
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 220ms ease-out;
+    pointer-events: none;
+  }
+
+  .linkActive::after {
+    transform: translateX(-50%) scaleX(1);
   }
 }
 
@@ -142,18 +174,31 @@
   display: none;
 }
 
-/* Mobile: заголовок секции — небольшой uppercase-ярлык */
+/* Mobile: заголовок секции — компактный «─── ԿԱՏԵԳՈՐԻԱՆԵՐ ───» вид
+   с тонкими линиями по бокам. Куда чище и легче, чем массивный border-top. */
 .mobileGroupTitle {
-  display: block;
-  padding: var(--space-4) var(--space-4) var(--space-2);
-  margin-top: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 14px 6px;
+  margin-top: 6px;
 
   font-size: var(--fs-xs);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--text-light);
-  border-top: 1px solid var(--border-color);
+
+  border-top: none;
+}
+
+.mobileGroupTitle::before,
+.mobileGroupTitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--border-color);
 }
 
 /* Список пунктов группы (на мобильных всегда виден; на десктопе — dropdown) */
@@ -171,17 +216,18 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 12px;
   width: 100%;
 
-  padding: var(--space-2) var(--space-4);
-  font-size: var(--fs-md);
+  /* Категории заметно компактнее главных ссылок — формирует визуальную иерархию */
+  padding: 8px 14px;
+  font-size: var(--fs-base);
   font-weight: 500;
   color: var(--text-dark);
   white-space: nowrap;
   text-decoration: none;
 
-  border-radius: var(--radius-md);
+  border-radius: 10px;
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
@@ -198,18 +244,31 @@
   );
 }
 
+/* Hover поверх активной ссылки: НЕ теряем accent-фон, иначе для
+   светлых акцентов (жёлтый Document Cloud) текст полностью сливался
+   с серым light-surface. Усиливаем accent-тонировку, чтобы и текст,
+   и фон оставались согласованными. */
+.groupLinkActive:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--accent, var(--primary-red)) 16%,
+    transparent
+  );
+}
+
 .colorDot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: var(--accent, var(--primary-red));
   flex-shrink: 0;
-  box-shadow: 0 0 0 2px color-mix(
-    in srgb,
-    var(--accent, var(--primary-red)) 25%,
-    transparent
-  );
-  transition: transform 200ms ease-out;
+  /* Двойное «гало» вокруг точки — как у светодиода: внутреннее яркое
+     кольцо в цвет категории + лёгкая тень под ним. Делает дот заметнее
+     при компактном layout. */
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--accent, var(--primary-red)) 22%, transparent),
+    0 1px 4px color-mix(in srgb, var(--accent, var(--primary-red)) 35%, transparent);
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
 }
 
 .groupLink:hover .colorDot {
@@ -220,8 +279,13 @@
   .groupLinkActive {
     background-color: rgba(0, 0, 0, 0.04);
   }
+  .groupLinkActive:hover {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
   .colorDot {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.06);
+    box-shadow:
+      0 0 0 2px rgba(0, 0, 0, 0.06),
+      0 1px 4px rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -287,6 +351,10 @@
     flex-direction: row;
     align-items: center;
     gap: var(--space-1);
+
+    /* Сбрасываем мобильный фикс по ширине/высоте */
+    width: auto;
+    height: auto;
 
     background-color: transparent;
     border: none;
@@ -374,16 +442,43 @@
 }
 
 /* ============================================================
-   Очень узкие экраны (< 360px) — компактный padding
+   Очень узкие/невысокие экраны — ещё чуть компактнее
    ============================================================ */
 @media (max-width: 359px) {
   .list {
-    padding: var(--space-4) var(--space-3) var(--space-6);
+    padding: 10px 10px 16px;
   }
 
-  .link,
-  .groupLink {
-    padding: var(--space-2) var(--space-3);
+  .link {
+    padding: 9px 12px;
     font-size: var(--fs-base);
+  }
+
+  .groupLink {
+    padding: 6px 12px;
+    font-size: var(--fs-sm);
+  }
+
+  .mobileGroupTitle {
+    padding: 8px 12px 4px;
+    margin-top: 4px;
+  }
+}
+
+/* На низких экранах (например, ландшафт телефона) дополнительно ужимаем */
+@media (max-height: 600px) and (max-width: 1023px) {
+  .list {
+    padding: 8px 12px 12px;
+    gap: 0;
+  }
+  .link {
+    padding: 8px 14px;
+  }
+  .groupLink {
+    padding: 6px 14px;
+  }
+  .mobileGroupTitle {
+    padding: 6px 14px 4px;
+    margin-top: 2px;
   }
 }

@@ -14,7 +14,6 @@ export const categories = [
     color: '#00A0DE',
     description:
       'Ամենաամբողջական գործիքակազմը դիզայներների, լուսանկարիչների, նկարազարդողների և տեսանկարահանողների համար։ Photoshop, Illustrator, Premiere Pro և տասնյակ այլ ծրագրեր մեկ բաժանորդագրությամբ։',
-    icon: '🎨',
   },
   {
     id: 'document-cloud',
@@ -23,7 +22,6 @@ export const categories = [
     color: '#FFB800',
     description:
       'Ամպային ծառայությունների ընտանիք PDF-ի հետ աշխատելու համար՝ ստեղծում, խմբագրում, ստորագրում և փաստաթղթերի ճանաչում աշխարհի ցանկացած կետից։',
-    icon: '📄',
   },
   {
     id: 'experience-cloud',
@@ -32,7 +30,6 @@ export const categories = [
     color: '#00CC66',
     description:
       'Հարթակ մարքեթինգի, անալիտիկայի և հաճախորդների փորձի կառավարման համար, որից օգտվում են աշխարհի խոշորագույն բրենդները՝ L\'Oréal-ից մինչև Coca-Cola։',
-    icon: '📊',
   },
   {
     id: 'content-commerce',
@@ -41,7 +38,6 @@ export const categories = [
     color: '#FF6B35',
     description:
       'Բովանդակության կառավարման և էլեկտրոնային առևտրի լուծումներ՝ ստեղծեք, հրապարակեք և վաճառեք ցանկացած ալիքով Adobe Experience Manager-ի և Magento-ի միջոցով։',
-    icon: '🛒',
   },
   {
     id: '3d-ai',
@@ -50,7 +46,6 @@ export const categories = [
     color: '#9D4EDD',
     description:
       '3D-մոդելավորում, տեքստուրավորում և Firefly գեներատիվ արհեստական բանականություն։ Տեխնոլոգիաներ, որոնք փոխում են բովանդակություն ստեղծելու մոտեցումը։',
-    icon: '✨',
   },
 ];
 

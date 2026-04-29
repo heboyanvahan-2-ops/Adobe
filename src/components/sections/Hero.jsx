@@ -34,6 +34,9 @@ import styles from '../../styles/Hero.module.css';
  *                                  или функция onClick.
  *  - secondaryCta    (объект, опц.) — вторая кнопка (outline) — тот же формат.
  *  - children        — произвольный JSX под кнопками (опционально).
+ *  - decoration      (ReactNode, опц.) — декоративный слой, который рендерится
+ *                    ПОВЕРХ фона, но ПОД контентом (волны, частицы, орбы и т.п.).
+ *                    Если задан — стандартные плавающие пятна (defaultBg) НЕ показываются.
  *
  * Пример:
  *   <Hero
@@ -57,6 +60,7 @@ function Hero({
   cta,
   secondaryCta,
   children,
+  decoration,
 }) {
   // Собираем стили фона. Приоритет: image > color > градиент по умолчанию.
   const heroStyle = {};
@@ -79,8 +83,17 @@ function Hero({
 
   return (
     <section className={classes} style={heroStyle}>
-      {/* Декоративные плавающие пятна в фоне (показываются только в режиме defaultBg) */}
-      {!backgroundImage && !backgroundColor && (
+      {/* Кастомный декоративный слой (волны, частицы…). Если он задан, стандартные
+          плавающие пятна не показываем — иначе перегруз. */}
+      {decoration && (
+        <div className={styles.decoration} aria-hidden="true">
+          {decoration}
+        </div>
+      )}
+
+      {/* Декоративные плавающие пятна в фоне (показываются только в режиме defaultBg
+          и если не задан кастомный decoration) */}
+      {!decoration && !backgroundImage && !backgroundColor && (
         <>
           <span className={`${styles.blob} ${styles.blob1}`} aria-hidden="true" />
           <span className={`${styles.blob} ${styles.blob2}`} aria-hidden="true" />

@@ -171,6 +171,119 @@ export function GlobeIcon(props) {
 }
 
 /* ============================================================
+   HOMEPAGE — большие hero-иконки для CategoryCard
+
+   Эти иконки рендерятся внутри цветного hero-блока CategoryCard
+   на главной странице (фон = фирменный цвет категории, иконка белая).
+   Размер по умолчанию 72px, чуть толще обводка для лучшей читаемости
+   на цветном фоне. Каждая иконка — узнаваемый символ категории.
+   ============================================================ */
+
+/** Creative Cloud — палитра художника с 4 цветными мазками. */
+export function CreativePaletteIcon(props) {
+  return (
+    <IconWrapper strokeWidth={2.4} {...props}>
+      {/* Силуэт палитры (со скосом и отверстием для большого пальца) */}
+      <path d="M48 8 a26 26 0 1 0 -8 50 c2 .3 3 -1 3 -3 v-4 a4 4 0 0 1 4 -4 h6 a13 13 0 0 0 13 -13 a26 26 0 0 0 -18 -26 z" />
+      {/* 4 «мазка» краски — точки */}
+      <circle cx="22" cy="22" r="3" fill="currentColor" stroke="none" />
+      <circle cx="36" cy="16" r="3" fill="currentColor" stroke="none" />
+      <circle cx="48" cy="22" r="3" fill="currentColor" stroke="none" />
+      <circle cx="52" cy="36" r="3" fill="currentColor" stroke="none" />
+    </IconWrapper>
+  );
+}
+
+/** Document Cloud — стопка PDF-документов (3 листа со смещением). */
+export function DocumentStackIcon(props) {
+  return (
+    <IconWrapper strokeWidth={2.4} {...props}>
+      {/* Дальний лист (полупрозрачный) */}
+      <path
+        d="M22 6 H40 L52 18 V46 a2 2 0 0 1 -2 2 H22 a2 2 0 0 1 -2 -2 V8 a2 2 0 0 1 2 -2 z"
+        strokeOpacity="0.45"
+      />
+      {/* Средний лист */}
+      <path
+        d="M16 12 H34 L46 24 V52 a2 2 0 0 1 -2 2 H16 a2 2 0 0 1 -2 -2 V14 a2 2 0 0 1 2 -2 z"
+        strokeOpacity="0.7"
+      />
+      {/* Передний лист с углом-загибом */}
+      <path d="M10 18 H28 L40 30 V58 a2 2 0 0 1 -2 2 H10 a2 2 0 0 1 -2 -2 V20 a2 2 0 0 1 2 -2 z" />
+      <path d="M28 18 V30 H40" />
+      <line x1="14" y1="40" x2="32" y2="40" />
+      <line x1="14" y1="48" x2="34" y2="48" />
+    </IconWrapper>
+  );
+}
+
+/** Experience Cloud — экран дашборда с восходящей трендовой линией. */
+export function DashboardChartIcon(props) {
+  return (
+    <IconWrapper strokeWidth={2.4} {...props}>
+      {/* Рамка дашборда */}
+      <rect x="6" y="10" width="52" height="44" rx="3" />
+      {/* Шапка панели */}
+      <line x1="6" y1="20" x2="58" y2="20" />
+      <circle cx="11" cy="15" r="1.2" fill="currentColor" stroke="none" />
+      <circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none" />
+      {/* Трендовая линия по 4 точкам */}
+      <path d="M12 46 L 22 38 L 32 42 L 42 30 L 52 26" />
+      {/* Точки данных */}
+      <circle cx="22" cy="38" r="2.6" fill="currentColor" stroke="none" />
+      <circle cx="32" cy="42" r="2.6" fill="currentColor" stroke="none" />
+      <circle cx="42" cy="30" r="2.6" fill="currentColor" stroke="none" />
+      <circle cx="52" cy="26" r="2.6" fill="currentColor" stroke="none" />
+    </IconWrapper>
+  );
+}
+
+/** Content & Commerce — витрина с навесом и звёздочкой. */
+export function StorefrontBagIcon(props) {
+  return (
+    <IconWrapper strokeWidth={2.4} {...props}>
+      {/* Корпус витрины */}
+      <path d="M10 26 H54 V56 a2 2 0 0 1 -2 2 H12 a2 2 0 0 1 -2 -2 V26 z" />
+      {/* Навес (фестон) */}
+      <path d="M6 26 L12 14 H52 L58 26" />
+      {/* Зигзаг навеса */}
+      <path d="M14 26 l4 -8 m4 8 l4 -8 m4 8 l4 -8 m4 8 l4 -8 m4 8 l4 -8" />
+      {/* Дверной проём с витриной */}
+      <rect x="26" y="38" width="12" height="20" />
+      {/* Звёздочка (новинка) */}
+      <path
+        d="M48 36 l1 3 l3 1 l-3 1 l-1 3 l-1 -3 l-3 -1 l3 -1 z"
+        fill="currentColor"
+        stroke="none"
+      />
+    </IconWrapper>
+  );
+}
+
+/** 3D & AI — кристалл с искрой генеративного AI. */
+export function AICrystalIcon(props) {
+  return (
+    <IconWrapper strokeWidth={2.4} {...props}>
+      {/* Огранённый кристалл (брильянт) */}
+      <path d="M14 22 L32 8 L50 22 L32 56 Z" />
+      {/* Внутренняя огранка */}
+      <line x1="14" y1="22" x2="50" y2="22" />
+      <line x1="22" y1="22" x2="32" y2="8" />
+      <line x1="42" y1="22" x2="32" y2="8" />
+      <line x1="22" y1="22" x2="32" y2="56" />
+      <line x1="42" y1="22" x2="32" y2="56" />
+      {/* Искра-блик в углу (AI-генерация) */}
+      <path
+        d="M52 10 l1.4 4 l4 1.4 l-4 1.4 l-1.4 4 l-1.4 -4 l-4 -1.4 l4 -1.4 z"
+        fill="currentColor"
+        stroke="none"
+      />
+      <circle cx="48" cy="36" r="1.4" fill="currentColor" stroke="none" />
+    </IconWrapper>
+  );
+}
+
+/* ============================================================
    3D & AI (#9D4EDD)
    ============================================================ */
 

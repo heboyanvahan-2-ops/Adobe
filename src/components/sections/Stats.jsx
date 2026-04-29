@@ -12,7 +12,7 @@ import styles from '../../styles/Stats.module.css';
  *  - title    (строка, опц.) — заголовок секции (h2);
  *  - subtitle (строка, опц.) — подзаголовок;
  *  - items    (массив)       — список статистик; каждый элемент:
- *      { value, label, icon?, color? }  — см. StatCard;
+ *      { value, label, color? }  — см. StatCard;
  *  - background ('light' | 'dark' | 'transparent') — фон секции:
  *      • 'light'       — светло-серый (по умолчанию);
  *      • 'dark'        — тёмно-синий с белыми карточками;
@@ -22,8 +22,8 @@ import styles from '../../styles/Stats.module.css';
  *   <Stats
  *     title="Adobe թվերով"
  *     items={[
- *       { value: '30+', label: 'արտադրանք', icon: '🎯' },
- *       { value: '5М+', label: 'օգտատեր', icon: '👥' },
+ *       { value: '30+', label: 'արտադրանք', color: '#FF0000' },
+ *       { value: '5М+', label: 'օգտատեր',   color: '#00A0DE' },
  *       ...
  *     ]}
  *   />
@@ -65,7 +65,6 @@ function Stats({
               key={`${item.value}-${item.label}`}
               value={item.value}
               label={item.label}
-              icon={item.icon}
               color={item.color}
               className={`animate-fade-in-up delay-${Math.min((i + 1) * 100, 600)}`}
             />

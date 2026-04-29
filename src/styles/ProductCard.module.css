@@ -85,10 +85,16 @@
   letter-spacing: 0.02em;
   line-height: 1;
 
-  /* Лёгкое свечение в цвете самого продукта */
+  /* text-shadow гарантирует читабельность shortCode на любых акцентных
+     цветах — особенно важно на светлых (жёлтый #FFB800), где белое
+     на жёлтом не проходит WCAG. Тонкая тёмная подложка под буквами. */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
+
+  /* Лёгкое свечение в цвете самого продукта + внутренний "край" */
   box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.12),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.12);
+    inset 0 -2px 0 rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06);
 
   transition: transform 250ms ease-out;
   flex-shrink: 0;
@@ -136,15 +142,23 @@
 
   font-size: var(--fs-sm);
   font-weight: 600;
-  color: var(--accent, var(--primary-red));
+  /* Сдвигаем accent в сторону тёмного для гарантированной видимости
+     CTA-ссылки на белой карточке (жёлтые продукты Document Cloud
+     иначе теряются на белом фоне). */
+  color: color-mix(in srgb, var(--accent, var(--primary-red)) 75%, var(--text-dark));
 
-  transition: gap 200ms ease-out;
+  transition: gap 200ms ease-out, color 200ms ease-out;
   width: fit-content;
 }
 
 .cta:hover {
   gap: 12px;
-  color: var(--accent, var(--primary-red));
+}
+
+@supports not (color: color-mix(in srgb, red 10%, blue)) {
+  .cta {
+    color: var(--accent, var(--primary-red));
+  }
 }
 
 .arrow {

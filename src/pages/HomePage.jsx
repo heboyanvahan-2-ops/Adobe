@@ -1,6 +1,7 @@
 import PageLayout from '../components/layouts/PageLayout';
 import Container from '../components/common/Container';
 import Hero from '../components/sections/Hero';
+import WaveBackground from '../components/sections/WaveBackground';
 import CTASection from '../components/sections/CTASection';
 import Grid from '../components/layouts/Grid';
 import CategoryCard from '../components/cards/CategoryCard';
@@ -61,7 +62,8 @@ const T = {
 function HomePage() {
   return (
     <PageLayout title="Գլխավոր">
-      {/* 1) Hero — светлый, с фирменным акцентом */}
+      {/* 1) Hero — светлый, с фирменным акцентом
+            + кастомный декоративный слой: волны, частицы и цветные орбы. */}
       <Hero
         badge={T.hero.badge}
         title={T.hero.title}
@@ -70,7 +72,8 @@ function HomePage() {
         secondaryCta={T.hero.secondary}
         height="full"
         theme="light"
-        backgroundColor="linear-gradient(135deg, #ffffff 0%, #f7f7f9 60%, #fff5f5 100%)"
+        backgroundColor="linear-gradient(135deg, #ffffff 0%, #f7f7f9 55%, #fff5f5 100%)"
+        decoration={<WaveBackground />}
       />
 
       {/* 2) Категории */}
