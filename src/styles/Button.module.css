@@ -10,8 +10,13 @@
  *
  * Размеры: small | medium | large.
  *
- * Hover-эффект: transform: translateY(-2px) + усиленная тень.
+ * Hover: без сдвига (translate) — иначе курсор «выпадает» из кнопки и
+ * hover мигает. Только усиленная тень + цвета.
  * Все переходы плавные через CSS transition.
+ *
+ * Важно: кнопка как <Link>/<a> наследует глобальный a:hover { color: red }.
+ * Специфичность a:hover выше, чем у .primary { color }, поэтому в :hover
+ * каждого варианта цвет текста задаётся явно.
  */
 
 /* ===== Базовые стили (общие для всех вариантов) ===== */
@@ -42,13 +47,12 @@
   cursor: pointer;
   user-select: none;
 
-  /* Плавные переходы для всех hover-свойств */
+  /* Без transition на transform — на hover transform не меняем */
   transition:
-    transform        150ms ease-out,
-    box-shadow       250ms ease-out,
-    background-color 200ms ease-out,
-    border-color     200ms ease-out,
-    color            200ms ease-out,
+    box-shadow       220ms ease-out,
+    background-color 150ms ease-out,
+    border-color     150ms ease-out,
+    color            150ms ease-out,
     opacity          200ms ease-out;
 }
 
@@ -60,12 +64,10 @@
 /* ===== Hover (общий для всех вариантов) ===== */
 
 .button:not(.disabled):not(:disabled):hover {
-  transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
 
 .button:not(.disabled):not(:disabled):active {
-  transform: translateY(0);
   box-shadow: var(--shadow-md);
 }
 
@@ -94,7 +96,8 @@
 }
 
 .primary:not(.disabled):not(:disabled):hover {
-  background-color: #d10000;
+  background-color: #e60000;
+  color: #ffffff;
 }
 
 /* ===== Вариант: SECONDARY (серая) ===== */
@@ -106,6 +109,7 @@
 
 .secondary:not(.disabled):not(:disabled):hover {
   background-color: #e3e3e3;
+  color: var(--text-dark);
 }
 
 /* ===== Вариант: OUTLINE (белый фон, красный контур) ===== */
@@ -119,6 +123,7 @@
 .outline:not(.disabled):not(:disabled):hover {
   background-color: var(--primary-red);
   color: #ffffff;
+  border-color: var(--primary-red);
 }
 
 /* ===== fullWidth — на всю ширину родителя ===== */

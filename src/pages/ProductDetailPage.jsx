@@ -25,12 +25,10 @@ import styles from '../styles/ProductDetailPage.module.css';
  *
  * Структура страницы:
  *   1. Hero            — заголовок-баннер с цветом продукта.
- *   2. Main            — двухколоночный блок: фирменная плашка + цена /
- *                        бейдж-категория, краткое и полное описание.
- *   3. Features        — Grid с FeatureCard (5–7 фич с номерами).
- *   4. UsedBy          — чипы с целевой аудиторией.
- *   5. Similar Products — Grid с 3 ProductCard (другие из той же категории).
- *   6. CTA             — «Загрузить пробную версию» + ссылка на категорию.
+ *   2. Main       — плашка кода, бейдж категории, краткое и полное описание.
+ *   3. Lower       — одна секция: сначала возможности (FeatureCard), затем
+ *                    один блок «Համանման արտադրանքներ» (ProductCard).
+ *   4. CTA         — пробная версия + ссылка на категорию.
  */
 
 // Тексты-метки страницы (на армянском). Названия и описания продуктов
@@ -39,18 +37,11 @@ const T = {
   hero: {
     badge: 'Արտադրանք',
   },
-  price: {
-    label: 'Արժեք',
-  },
   features: {
     title: 'Հիմնական հնարավորությունները',
     subtitle: (n) =>
       `${n} առանցքային ֆունկցիա, որոնք օգնում են պրոֆեսիոնալներին ` +
       `հասնել առավելագույն արդյունքի։`,
-  },
-  usedBy: {
-    title: 'Ո՞ւմ կպիտանի',
-    subtitle: 'Արտադրանքն օգտագործում են հետևյալ ոլորտներում աշխատող մասնագետները։',
   },
   similar: {
     title: 'Համանման արտադրանքներ',
@@ -89,6 +80,24 @@ function getShortCode(product) {
     .padEnd(2, '·');
 }
 
+/**
+ * Нормализует элемент массива features из products.js:
+ *   - строка → только заголовок;
+ *   - объект { title, description } → заголовок + подпись на карточке.
+ */
+function normalizeFeature(feature) {
+  if (typeof feature === 'string') {
+    return { title: feature, description: undefined };
+  }
+  if (feature && typeof feature === 'object' && feature.title) {
+    return {
+      title: feature.title,
+      description: feature.description,
+    };
+  }
+  return { title: String(feature), description: undefined };
+}
+
 function ProductDetailPage() {
   const { productId } = useParams();
   const product = getProductById(productId);
@@ -102,7 +111,7 @@ function ProductDetailPage() {
   const similar = getSimilarProducts(product, 3);
   const shortCode = getShortCode(product);
 
-  // Pricing — пробную версию «скачать»: пока только UX-демонстрация.
+  // Пробная версия: пока только UX-демонстрация.
   const handleDownloadTrial = () => {
     // Реальная интеграция (например, открытие лендинга) добавится позже.
     // Сейчас просто скроллим в верх страницы.
@@ -111,6 +120,7 @@ function ProductDetailPage() {
 
   return (
     <PageLayout title={product.name}>
+      <div className={styles.page}>
       {/* 1) Hero — фирменный цвет продукта в виде градиента */}
       <Hero
         badge={T.hero.badge}
@@ -128,19 +138,14 @@ function ProductDetailPage() {
             className={styles.mainGrid}
             style={{ '--accent': product.color }}
           >
-            {/* Левая колонка: фирменная плашка + цена */}
+            {/* Левая колонка: только компактная фирменная плашка */}
             <aside className={`${styles.brandColumn} animate-fade-in-up`}>
               <div className={styles.brandPlate} aria-hidden="true">
                 {shortCode}
               </div>
-
-              <div className={styles.priceCard}>
-                <span className={styles.priceLabel}>{T.price.label}</span>
-                <div className={styles.priceValue}>{product.price}</div>
-              </div>
             </aside>
 
-            {/* Правая колонка: бейдж + описание */}
+            {/* Правая колонка: бейдж категории и описания */}
             <div className={`${styles.infoColumn} animate-fade-in-up delay-100`}>
               {category && (
                 <Link to={`/${category.id}`} className={styles.categoryBadge}>
@@ -148,98 +153,72 @@ function ProductDetailPage() {
                 </Link>
               )}
               <p className={styles.shortDesc}>{product.shortDesc}</p>
+
               <p className={styles.fullDesc}>{product.fullDesc}</p>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* 3) Features — карточки возможностей */}
+      {/* 3) Возможности + похожие продукты — одна секция, общий фон */}
       <section
-        className={styles.features}
+        className={styles.lower}
         style={{ '--accent': product.color }}
       >
         <Container>
-          <div className={styles.sectionHeader}>
-            <h2 className={`${styles.sectionTitle} animate-fade-in-up`}>
-              {T.features.title}
-            </h2>
-            <p className={`${styles.sectionSubtitle} animate-fade-in-up delay-100`}>
-              {T.features.subtitle(product.features.length)}
-            </p>
-          </div>
-
-          <Grid columns={{ sm: 1, md: 2, lg: 3 }} gap="lg">
-            {product.features.map((feature, i) => (
-              <FeatureCard
-                key={feature}
-                index={i + 1}
-                title={feature}
-                color={product.color}
-                className={`animate-fade-in-up delay-${Math.min((i + 1) * 100, 700)}`}
-              />
-            ))}
-          </Grid>
-        </Container>
-      </section>
-
-      {/* 4) UsedBy — целевая аудитория */}
-      {product.usedBy && product.usedBy.length > 0 && (
-        <section
-          className={styles.usedBy}
-          style={{ '--accent': product.color }}
-        >
-          <Container>
+          <div className={styles.featuresBlock}>
             <div className={styles.sectionHeader}>
               <h2 className={`${styles.sectionTitle} animate-fade-in-up`}>
-                {T.usedBy.title}
+                {T.features.title}
               </h2>
               <p className={`${styles.sectionSubtitle} animate-fade-in-up delay-100`}>
-                {T.usedBy.subtitle}
-              </p>
-            </div>
-
-            <ul className={styles.usedByList}>
-              {product.usedBy.map((audience, i) => (
-                <li
-                  key={audience}
-                  className={`${styles.usedByChip} animate-fade-in-up delay-${Math.min((i + 1) * 100, 600)}`}
-                >
-                  {audience}
-                </li>
-              ))}
-            </ul>
-          </Container>
-        </section>
-      )}
-
-      {/* 5) Similar products */}
-      {similar.length > 0 && (
-        <section className={styles.similar}>
-          <Container>
-            <div className={styles.sectionHeader}>
-              <h2 className={`${styles.sectionTitle} animate-fade-in-up`}>
-                {T.similar.title}
-              </h2>
-              <p className={`${styles.sectionSubtitle} animate-fade-in-up delay-100`}>
-                {T.similar.subtitle}
+                {T.features.subtitle(product.features.length)}
               </p>
             </div>
 
             <Grid columns={{ sm: 1, md: 2, lg: 3 }} gap="lg">
-              {similar.map((p, i) => (
-                <ProductCard
-                  key={p.id}
-                  product={p}
-                  className={`animate-fade-in-up delay-${Math.min((i + 1) * 100, 400)}`}
-                />
-              ))}
+              {product.features.map((feature, i) => {
+                const { title, description } = normalizeFeature(feature);
+                return (
+                  <FeatureCard
+                    key={`${product.id}-feat-${i}`}
+                    index={i + 1}
+                    title={title}
+                    description={description}
+                    color={product.color}
+                    className={`animate-fade-in-up delay-${Math.min((i + 1) * 100, 700)}`}
+                  />
+                );
+              })}
             </Grid>
-          </Container>
-        </section>
-      )}
+          </div>
 
-      {/* 6) CTA — пробная версия */}
+          {similar.length > 0 && (
+            <div className={styles.similarBlock}>
+              <div className={styles.sectionHeader}>
+                <h2 className={`${styles.sectionTitle} animate-fade-in-up`}>
+                  {T.similar.title}
+                </h2>
+                <p className={`${styles.sectionSubtitle} animate-fade-in-up delay-100`}>
+                  {T.similar.subtitle}
+                </p>
+              </div>
+
+              <Grid columns={{ sm: 1, md: 2, lg: 3 }} gap="lg">
+                {similar.map((p, i) => (
+                  <ProductCard
+                    key={p.id}
+                    product={p}
+                    className={`animate-fade-in-up delay-${Math.min((i + 1) * 100, 400)}`}
+                  />
+                ))}
+              </Grid>
+            </div>
+          )}
+        </Container>
+      </section>
+
+      {/* 4) CTA — пробная версия */}
       <CTASection
         title={T.cta.title(product.name)}
         subtitle={T.cta.subtitle}
@@ -251,6 +230,7 @@ function ProductDetailPage() {
         }
         background="dark"
       />
+      </div>
     </PageLayout>
   );
 }

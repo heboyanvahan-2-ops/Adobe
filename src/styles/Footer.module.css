@@ -107,14 +107,12 @@
   gap: var(--space-2);
   font-size: var(--fs-sm);
   color: #9ba1c4;
-  transition: color var(--transition-fast),
-              transform var(--transition-fast);
+  transition: color var(--transition-fast);
   width: fit-content;
 }
 
 .link:hover {
   color: #fff;
-  transform: translateX(2px);
 }
 
 /* Цветной кружок рядом со ссылкой на категорию */
@@ -181,14 +179,14 @@
   transition: background-color var(--transition-base),
               color var(--transition-base),
               border-color var(--transition-base),
-              transform var(--transition-fast);
+              box-shadow var(--transition-fast);
 }
 
 .socialLink:hover {
   background-color: var(--primary-red);
   color: #fff;
   border-color: transparent;
-  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.25);
 }
 
 /* ----- Нижняя строка ----- */

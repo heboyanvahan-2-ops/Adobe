@@ -167,13 +167,11 @@
   padding: var(--space-4) var(--space-5);
   box-shadow: var(--shadow-sm);
   transition:
-    transform   200ms ease-out,
     box-shadow  300ms ease-out,
     border-color 200ms ease-out;
 }
 
 .item:hover .card {
-  transform: translateY(-3px);
   box-shadow:
     var(--shadow-lg),
     0 0 0 1px var(--accent, transparent);

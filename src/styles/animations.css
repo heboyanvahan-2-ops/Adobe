@@ -6,7 +6,7 @@
  * Содержание:
  *  1. @keyframes — все ключевые кадры.
  *  2. Утилитарные классы — animate-*.
- *  3. Hover-микровзаимодействия — hover-lift, hover-scale.
+ *  3. Микровзаимодействия при наведении — pointer-lift, pointer-scale.
  *  4. Появление при скролле — animation-timeline: view() (без JS!).
  *  5. prefers-reduced-motion — уважаем настройки доступности.
  */
@@ -125,24 +125,22 @@
 .delay-800 { animation-delay: 800ms; }
 
 /* =====================================================
-   3. Hover-эффекты (микровзаимодействия)
+   3. Эффекты при наведении (утилиты)
    ===================================================== */
 
-/* hover-lift: при наведении элемент поднимается и получает тень */
-.hover-lift {
-  transition: transform var(--transition-base),
-              box-shadow var(--transition-base);
+/* pointer-lift: при наведении — только тень (без translate, см. Button.module.css) */
+.pointer-lift {
+  transition: box-shadow var(--transition-base);
 }
-.hover-lift:hover {
-  transform: translateY(-6px);
+.pointer-lift:hover {
   box-shadow: var(--shadow-lg);
 }
 
-/* hover-scale: лёгкое увеличение */
-.hover-scale {
+/* pointer-scale: лёгкое увеличение */
+.pointer-scale {
   transition: transform var(--transition-base);
 }
-.hover-scale:hover {
+.pointer-scale:hover {
   transform: scale(1.03);
 }
 

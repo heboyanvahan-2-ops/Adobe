@@ -30,7 +30,6 @@
   isolation: isolate;
 
   transition:
-    transform   250ms ease-out,
     box-shadow  300ms ease-out,
     border-color 200ms ease-out;
 }
@@ -54,7 +53,6 @@
 /* ---------- Hover ---------- */
 
 .card:hover {
-  transform: translateY(-4px);
   box-shadow:
     var(--shadow-lg),
     0 0 0 1px var(--accent, transparent);
@@ -147,12 +145,8 @@
      иначе теряются на белом фоне). */
   color: color-mix(in srgb, var(--accent, var(--primary-red)) 75%, var(--text-dark));
 
-  transition: gap 200ms ease-out, color 200ms ease-out;
+  transition: color 200ms ease-out;
   width: fit-content;
-}
-
-.cta:hover {
-  gap: 12px;
 }
 
 @supports not (color: color-mix(in srgb, red 10%, blue)) {

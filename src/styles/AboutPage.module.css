@@ -65,12 +65,10 @@
   gap: var(--space-3);
 
   transition:
-    transform 250ms ease-out,
     box-shadow 300ms ease-out;
 }
 
 .paragraph:hover {
-  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 

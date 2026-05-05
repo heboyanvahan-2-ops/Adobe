@@ -10,7 +10,7 @@
  * элемент <a> через .card, без дополнительной обёртки.
  *
  * Hover-эффекты:
- *   transform: scale(1.05)  + увеличенная тень + переход иконки.
+ *   усиленная тень + иконка (без scale всей карты — стабильный hover).
  */
 
 .card {
@@ -33,7 +33,6 @@
 
   /* Плавные переходы для всех hover-свойств */
   transition:
-    transform   300ms cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow  300ms ease-out,
     border-color 200ms ease-out;
 }
@@ -41,10 +40,10 @@
 /* ---------- Hover ---------- */
 
 .card:hover {
-  transform: scale(1.05);
   border-color: transparent;
 
-  /* Двойная тень: общая глубокая + цветная под тон категории */
+  /* Двойная тень: общая глубокая + цветная под тон категории
+     (без scale/translate — стабильный hover без мигания курсора). */
   box-shadow:
     0 24px 48px rgba(10, 14, 39, 0.18),
     0 8px 16px var(--accent, rgba(0, 0, 0, 0.1));
@@ -179,7 +178,6 @@
      перестаёт сливаться с белым фоном карточки. */
   color: color-mix(in srgb, var(--accent, var(--primary-red)) 75%, var(--text-dark));
 
-  transition: gap 250ms ease-out;
   width: fit-content;
 }
 
@@ -187,10 +185,6 @@
   .cta {
     color: var(--accent, var(--primary-red));
   }
-}
-
-.card:hover .cta {
-  gap: 12px;
 }
 
 .arrow {

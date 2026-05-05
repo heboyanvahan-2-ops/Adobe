@@ -59,8 +59,7 @@
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition:
-    transform 220ms ease-out,
-    box-shadow 300ms ease-out,
+    box-shadow  300ms ease-out,
     border-color 200ms ease-out;
 }
 
@@ -82,7 +81,6 @@
 }
 
 .summaryCard:hover {
-  transform: translateY(-3px);
   box-shadow:
     var(--shadow-lg),
     0 0 0 1px color-mix(in srgb, var(--accent, var(--primary-red)) 35%, transparent);
@@ -175,8 +173,7 @@
   overflow: hidden;
   isolation: isolate;
   transition:
-    transform 220ms ease-out,
-    box-shadow 300ms ease-out,
+    box-shadow  300ms ease-out,
     border-color 200ms ease-out;
 }
 
@@ -196,7 +193,6 @@
 }
 
 .quickTile:hover {
-  transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
   border-color: transparent;
 }
@@ -287,13 +283,11 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   transition:
-    transform 220ms ease-out,
-    box-shadow 300ms ease-out,
+    box-shadow  300ms ease-out,
     border-color 200ms ease-out;
 }
 
 .contactCard:hover {
-  transform: translateY(-3px);
   box-shadow:
     var(--shadow-lg),
     0 0 0 1px color-mix(in srgb, var(--accent, var(--primary-red)) 35%, transparent);
@@ -412,14 +406,13 @@
   transition:
     background-color 200ms ease-out,
     color 200ms ease-out,
-    transform 200ms ease-out;
+    box-shadow 200ms ease-out;
 }
 
 .socialItem:hover {
   background-color: var(--accent, var(--primary-red));
   color: #fff;
   border-color: transparent;
-  transform: translateY(-2px);
   /* Гарантия видимости иконки на светлом accent-е (жёлтый): мягкая
      тёмная тень под глифом + внутренняя тёмная обводка по краю кнопки. */
   box-shadow:

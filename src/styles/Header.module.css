@@ -64,7 +64,6 @@
 
 .logo:hover {
   color: var(--text-dark);
-  transform: translateY(-1px);
 }
 
 .logo:hover .logoMark {

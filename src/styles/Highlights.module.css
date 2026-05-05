@@ -61,7 +61,6 @@
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition:
-    transform   220ms ease-out,
     box-shadow  300ms ease-out,
     border-color 200ms ease-out;
 }
@@ -85,7 +84,6 @@
 }
 
 .card:hover {
-  transform: translateY(-4px);
   box-shadow:
     var(--shadow-lg),
     0 0 0 1px color-mix(in srgb, var(--accent, var(--primary-red)) 40%, transparent);

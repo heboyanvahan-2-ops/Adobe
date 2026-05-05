@@ -1,94 +1,70 @@
-# Adobe Showcase
+# Getting Started with Create React App
 
-Интерактивная демонстрация продуктов Adobe — учебный проект (дипломная работа).
-React-приложение, в котором представлены **22+ продукта Adobe** из **5 категорий**.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Стек технологий
+## Available Scripts
 
-- **React 19** + **Create React App**
-- **React Router v6** — клиентский роутинг
-- **Чистый CSS / CSS Modules** — без Tailwind, без Material-UI
-- **Только JavaScript** (без TypeScript)
-- Mobile-first адаптивный дизайн
-- CSS-анимации (без JS)
+In the project directory, you can run:
 
-## Запуск проекта
+### `npm start`
 
-```bash
-npm install     # один раз — установить зависимости
-npm start       # дев-сервер на http://localhost:3000
-npm run build   # продакшн-сборка в папку build/
-```
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Структура проекта
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-```
-src/
-├── pages/                       # Страницы приложения (9 штук)
-│   ├── HomePage.jsx
-│   ├── AboutPage.jsx
-│   ├── CreativeCloudPage.jsx
-│   ├── DocumentCloudPage.jsx
-│   ├── ExperienceCloudPage.jsx
-│   ├── ContentCommercePage.jsx
-│   ├── ThreeDAIPage.jsx         # маршрут /3d-ai
-│   ├── ProductDetailPage.jsx    # /product/:productId
-│   └── ContactPage.jsx
-├── components/
-│   ├── common/                  # базовые: Header, Navigation, Footer, Container, Button
-│   ├── cards/                   # карточки (будут добавлены)
-│   ├── sections/                # секции (Hero, ProductGallery и т.д.)
-│   └── layouts/
-│       └── PageLayout.jsx       # обёртка Header + main + Footer
-├── data/
-│   └── products.js              # 5 категорий + 22 продукта
-├── styles/
-│   ├── variables.css            # CSS-переменные (цвета, отступы, шрифты)
-│   ├── global.css               # сброс + базовая типографика
-│   ├── animations.css           # @keyframes и утилиты
-│   └── *.module.css             # CSS-модули по компонентам
-├── App.jsx                      # маршруты React Router
-└── index.jsx                    # точка входа
-```
+### `npm test`
 
-## Маршруты
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-| URL                    | Страница               |
-| ---------------------- | ---------------------- |
-| `/`                    | HomePage               |
-| `/about`               | AboutPage              |
-| `/creative-cloud`      | Creative Cloud         |
-| `/document-cloud`      | Document Cloud         |
-| `/experience-cloud`    | Experience Cloud       |
-| `/content-commerce`    | Content & Commerce     |
-| `/3d-ai`               | 3D & AI                |
-| `/product/:productId`  | Детали продукта        |
-| `/contact`             | Контакты / Заключение  |
+### `npm run build`
 
-## Цветовая палитра
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-| Назначение            | CSS-переменная           | Цвет      |
-| --------------------- | ------------------------ | --------- |
-| Бренд Adobe           | `--primary-red`          | `#FF0000` |
-| Creative Cloud        | `--creative-blue`        | `#00A0DE` |
-| Document Cloud        | `--document-yellow`      | `#FFB800` |
-| Experience Cloud      | `--experience-green`     | `#00CC66` |
-| Content & Commerce    | `--commerce-orange`      | `#FF6B35` |
-| 3D & AI               | `--ai-purple`            | `#9D4EDD` |
-| Тёмный фон            | `--dark-bg`              | `#0A0E27` |
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## Что уже сделано
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- Структура папок, базовые компоненты (`Header`, `Footer`, `Navigation`, `Container`, `Button`).
-- Адаптивное меню с мобильным бургером.
-- Универсальная обёртка страницы `PageLayout` со скроллом наверх и `document.title`.
-- 9 страниц-заготовок с реальными данными из `products.js`.
-- Полный набор CSS-переменных и анимаций.
+### `npm run eject`
 
-## Что добавить дальше
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-Следующие шаги (по запросу):
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-1. Карточки: `ProductCard`, `CategoryCard`, `FeatureCard`, `StatCard`.
-2. Секции: `Hero`, `ProductGallery`, `Stats`, `Timeline`, `CTASection`.
-3. Полные версии каждой страницы со всеми секциями.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
