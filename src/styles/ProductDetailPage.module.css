@@ -227,3 +227,81 @@
   font-size: var(--fs-md);
   line-height: 1.6;
 }
+
+/* Video lessons — embedded player + external links */
+
+.videoLessons {
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border-color);
+}
+
+.embedWrap {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-bottom: var(--space-7);
+}
+
+.embedInner {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 16 / 9;
+  background: #0b0e12;
+}
+
+.embedFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.videoList {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.videoLink {
+  display: block;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background-color: var(--light-bg);
+  text-decoration: none;
+  color: var(--text-dark);
+  transition:
+    border-color 180ms ease-out,
+    background-color 180ms ease-out,
+    transform 180ms ease-out;
+}
+
+.videoLink:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--accent, var(--primary-red)) 45%,
+    var(--border-color)
+  );
+  background-color: color-mix(in srgb, var(--accent, var(--primary-red)) 4%, transparent);
+}
+
+@supports not (background: color-mix(in srgb, red 4%, transparent)) {
+  .videoLink:hover {
+    background-color: var(--light-surface);
+  }
+}
+
+.videoLinkTitle {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  display: block;
+}

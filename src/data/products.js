@@ -81,7 +81,17 @@ export const products = {
           title: "Ինտեգրացիա Lightroom-ի և Illustrator-ի հետ",
           description: "Կիսվեք պրոեկտներով Lightroom եւ Illustrator-ի միջով մեկ հոսքում։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Ընտրության գործիքներ Հիմնական տեխնիկա սկսնակների համար',
+          url: 'https://www.youtube.com/watch?v=PQtDXAQs37U',
+        },
+        {
+          title: 'Գեներատիվ լցում Օբյեկտներ, կադրի ընդլայնում, առաջարկներ',
+          url: 'https://www.youtube.com/watch?v=Zk4hXR4qQ-c',
+        },
+      ],
     },
     {
       id: 'illustrator',
@@ -113,7 +123,17 @@ export const products = {
           title: "SVG արտահանում վեբի համար",
           description: "SVG արտահանումը պահպանում է վեկտորը վեբի և interface-ների համար։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Վեկտորային գրաֆիկա Լիարժեք դասընթաց սկսնակների համար',
+          url: 'https://www.youtube.com/watch?v=Ib8UBwu3yGA',
+        },
+        {
+          title: 'Սքեչից մինչև վեկտոր Pen գործիք, կորեր, ձևեր',
+          url: 'https://www.youtube.com/watch?v=HeLb0dy81Lc',
+        },
+      ],
     },
     {
       id: 'indesign',
@@ -145,7 +165,17 @@ export const products = {
           title: "Կապեր Photoshop-ի և Illustrator-ի հետ",
           description: "Կապակցված ֆայլերը նշում են, երբ պատկերը թարմացվել է Photoshop/Illustrator-ում։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Տպագրություն և դասավորություն Լիարժեք դասընթաց',
+          url: 'https://www.youtube.com/watch?v=RXRT3dHu6_o',
+        },
+        {
+          title: 'Փաստաթուղթ, էջեր, աշխատատարածք Նախագծի սկիզբ',
+          url: 'https://www.youtube.com/watch?v=f2dJOYmC_PM',
+        },
+      ],
     },
     {
       id: 'xd',
@@ -177,7 +207,17 @@ export const products = {
           title: "Փլագիններ և ինտեգրացիաներ",
           description: "Փլագինների էկոհամակարգը միացնում է դիզայն-համակարգերը քոմփանի միջով։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'UX/UI դաս հիմունքներից Արտաբորդներ, բաղադրիչներ, նախատիպ',
+          url: 'https://www.youtube.com/watch?v=f2K1jmjj5pM',
+        },
+        {
+          title: 'Թարմացված հոսք Պրոտոտիպ և փոխազդեցություններ',
+          url: 'https://www.youtube.com/watch?v=68w2VwalD5w',
+        },
+      ],
     },
     {
       id: 'premiere-pro',
@@ -187,7 +227,7 @@ export const products = {
       color: '#9999FF',
       shortDesc: 'Պրոֆեսիոնալ ոչ-գծային վիդեո մոնտաժ։',
       fullDesc:
-        'Adobe Premiere Pro-ն կինոարտադրողների և YouTube-բլոգերների ընտրությունն է։ Աջակցում է ցանկացած ֆորմատներ՝ 8K-ից մինչև VR, մուլտիկամերային մոնտաժ և սերտ ինտեգրացիա After Effects-ի և Audition-ի հետ։',
+        'Adobe Premiere Pro-ն կինոարտադրողների և վիդեոբլոգերների ընտրությունն է։ Աջակցում է ցանկացած ֆորմատներ՝ 8K-ից մինչև VR, մուլտիկամերային մոնտաժ և սերտ ինտեգրացիա After Effects-ի և Audition-ի հետ։',
       features: [
         {
           title: "8K և HDR-ի աջակցություն",
@@ -209,7 +249,17 @@ export const products = {
           title: "After Effects-ի հետ ուղիղ ինտեգրացիա",
           description: "Թարմացրեք կոմպոզիցիան After Effects-ում փոխանցումից հետո։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Լիարժեք մոնտաժ նախագիծից մինչև արտահանում (~2 ժամ)',
+          url: 'https://www.youtube.com/watch?v=oLMdXC_B1vQ',
+        },
+        {
+          title: 'Մոնտաժի հիմքեր ինտերֆեյս, ժմկտում, հիմնական գործիքներ',
+          url: 'https://www.youtube.com/watch?v=cpIwiVSHh-4',
+        },
+      ],
     },
     {
       id: 'after-effects',
@@ -239,9 +289,19 @@ export const products = {
         },
         {
           title: "Սկրիպտներ և արտահայտություններ",
-          description: "Արտահայտություններն ավտոմատացնում են կրկնվող անիմացիաները։",
+          description: "Արտահայտությունները ավտոմատացնում են կրկնվող անիմացիաները։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Շարժապատկեր և կոմպոզիցիա մաստեր-դաս սկսնակների համար',
+          url: 'https://www.youtube.com/watch?v=m5GIbXbxn1o',
+        },
+        {
+          title: 'Միջին մակարդակի արագ ներածում շերտեր և անիմացիա',
+          url: 'https://www.youtube.com/watch?v=jFbRZZmMW7c',
+        },
+      ],
     },
     {
       id: 'animate',
@@ -273,7 +333,17 @@ export const products = {
           title: "ActionScript և JavaScript",
           description: "Սցենարները JavaScript-ով հնարավորություն են տալիս ինտերակտիվության։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Աշխատամաս, ժամանակացույթ, նախագիծ առաջին քայլեր',
+          url: 'https://www.youtube.com/watch?v=WFXELwble4M',
+        },
+        {
+          title: 'Արագ ներածում 2D-անիմացիայի հիմնական գործիքներ',
+          url: 'https://www.youtube.com/watch?v=0itiuHreY3A',
+        },
+      ],
     },
   ],
   'document-cloud': [
@@ -307,7 +377,17 @@ export const products = {
           title: "OCR — տեքստի ճանաչում",
           description: "OCR-ը վերածում է սկանը խմբարկելի տեքստ տասնյակ լեզուներով։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'PDF-ի հետ առաջին քայլեր Նախագիծ և հիմնական գործիքներ',
+          url: 'https://www.youtube.com/watch?v=nzRswX0YDg0',
+        },
+        {
+          title: 'Տեքստի և պատկերի խմբագրում PDF-ում',
+          url: 'https://www.youtube.com/watch?v=b_z1HvHYd3k',
+        },
+      ],
     },
     {
       id: 'sign',
@@ -339,7 +419,17 @@ export const products = {
           title: "Աուդիտի հետագծ",
           description: "Աուդիտի մատյանը ապացուցում է, թե ով և երբ է ստորագրել։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Էլեկտրոնային ստորագրություն PDF-ում քայլ առ քայլ',
+          url: 'https://www.youtube.com/watch?v=O2pZRXxEvas',
+        },
+        {
+          title: 'Ստորագրությունների ուղարկում և կարգավիճակի հետևում',
+          url: 'https://www.youtube.com/watch?v=YE_qOZUVGwA',
+        },
+      ],
     },
     {
       id: 'scan',
@@ -371,7 +461,13 @@ export const products = {
           title: "Անվճար հավելված",
           description: "Հավելվածը ներբեռնվում է առանց բաժանորդագրության։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Փաստաթղթերի սկանավորում, կարգավորում և ամպային պահեստ',
+          url: 'https://www.youtube.com/watch?v=Qxxn4InGoMc',
+        },
+      ],
     },
   ],
   'experience-cloud': [
@@ -405,7 +501,17 @@ export const products = {
           title: "Դեշբորդներ և հաշվետվություններ",
           description: "Վահանակները հարմարեցրեք ղեկավարության և թիմի համար։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Analysis Workspace արագ ներածություն',
+          url: 'https://www.youtube.com/watch?v=tk2KgKRT0pM',
+        },
+        {
+          title: 'Սեգմենտների ստեղծում և կանոններ',
+          url: 'https://www.youtube.com/watch?v=ek0Cleqmqx0',
+        },
+      ],
     },
     {
       id: 'real-time-cdp',
@@ -437,7 +543,17 @@ export const products = {
           title: "Ինտեգրացիա ցանկացած աղբյուրների հետ",
           description: "Միացրեք ցանկացած ամպ, CRM կամ պատկերասրահ API-ով։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Real-Time CDP՝ ընդհանուր պատկերի ներածություն',
+          url: 'https://www.youtube.com/watch?v=bNdSBctlSkA',
+        },
+        {
+          title: 'Անձնական պատկերի կառուցում Real-Time CDP-ով',
+          url: 'https://www.youtube.com/watch?v=B3w19FpDn2M',
+        },
+      ],
     },
     {
       id: 'marketo',
@@ -481,6 +597,16 @@ export const products = {
             'թե որ ալիքներն ու հպումներն են տանում եկամուտ ու պահում։',
         },
       ],
+      videoLessons: [
+        {
+          title: 'Email-ի նոր դիզայն Մոդուլի խորը դիտարկում',
+          url: 'https://www.youtube.com/watch?v=gfdEOnJ-oUE',
+        },
+        {
+          title: 'Ինտերակտիվ վեբինար Ֆունկցիաների ցուցադրություն',
+          url: 'https://www.youtube.com/watch?v=qAUUIh-kW0U',
+        },
+      ],
     },
     {
       id: 'journey-orchestration',
@@ -512,7 +638,17 @@ export const products = {
           title: "Կապ Real-Time CDP-ի հետ",
           description: "Օգտագործեք պրոֆիլներ CDP-ից ակնթարթային թարմացվող համատեքստով։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Լսարաններ, ճանապարհներ և գործակալների օրինակներ',
+          url: 'https://www.youtube.com/watch?v=V7n2KuhrhqQ',
+        },
+        {
+          title: 'Թեստային պրոֆիլներ Journey Optimizer-ում',
+          url: 'https://www.youtube.com/watch?v=eXjpAMhdONg',
+        },
+      ],
     },
     {
       id: 'cja',
@@ -544,7 +680,17 @@ export const products = {
           title: "Կաստոմ դեշբորդներ",
           description: "Դեշբորդերը ձևակերպեք ըստ դերերի (անալիտիկ, CMO, օպերացիա)։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Հաճախորդի երթուղու անալիտիկա Ներածում',
+          url: 'https://www.youtube.com/watch?v=QaNJ5Qff94s',
+        },
+        {
+          title: 'Կապը Analytics փաթեթի հետ Զուգահեռ վերլուծություն',
+          url: 'https://www.youtube.com/watch?v=BkAjaMPgpgE',
+        },
+      ],
     },
     {
       id: 'advertising-cloud',
@@ -576,7 +722,17 @@ export const products = {
           title: "Ստեղծագործական ձևաչափեր",
           description: "Dynamic Creative Optimization՝ հաղորդակցություն կատարմանը համապատասխան։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Լսարանների կառուցում և գովազդային ակտիվացում',
+          url: 'https://www.youtube.com/watch?v=sZQrfTird70',
+        },
+        {
+          title: 'Մարքեթինգային AI գործիքի պատկերացում',
+          url: 'https://www.youtube.com/watch?v=74ltnOqck5c',
+        },
+      ],
     },
   ],
   'content-commerce': [
@@ -610,7 +766,17 @@ export const products = {
           title: "Ամպային տեղակայում",
           description: "Տեղադրեք որպես ամպային ծառայություն կամ hybrid՝ անվտանգության պատճառներով։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Կայք Edge Delivery Փաստաթղթային խմբարման հոսք և GitHub',
+          url: 'https://www.youtube.com/watch?v=YpLctMRmJdA',
+        },
+        {
+          title: 'Կորպորատիվ կայքերի կառավարման ներածում',
+          url: 'https://www.youtube.com/watch?v=Lx8Vg1Bp0iU',
+        },
+      ],
     },
     {
       id: 'commerce',
@@ -642,7 +808,17 @@ export const products = {
           title: "Սերտ ինտեգրացիա AEM-ի հետ",
           description: "AEM-ի հետ համատեղ բովանդակությունը հասնում է սայթից մինչև ստուղթ։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Էլեկտրոնային առևտրի հարթակ Խանութի հիմնական աշխատանք',
+          url: 'https://www.youtube.com/watch?v=nFdz9DZrdFc',
+        },
+        {
+          title: 'Զարգացման Jumpstart Մոդուլներ և կառուցվածք',
+          url: 'https://www.youtube.com/watch?v=C1DlspXjPRE',
+        },
+      ],
     },
   ],
   '3d-ai': [
@@ -676,7 +852,17 @@ export const products = {
           title: "Հազարավոր պատրաստի նյութեր",
           description: "Պատրաստի գրադարանի հազարավոր նյութեր արագ մեկնարկի համար։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Substance 3D Designer՝ ներածում և հիմունքներ',
+          url: 'https://www.youtube.com/watch?v=VyFgpitTsYg',
+        },
+        {
+          title: 'Substance Painter՝ լիարժեք տեքստուրա սկսնակների համար',
+          url: 'https://www.youtube.com/watch?v=2rdUQd5nqRg',
+        },
+      ],
     },
     {
       id: 'firefly',
@@ -708,7 +894,17 @@ export const products = {
           title: "Անվտանգ առևտրային օգտագործման համար",
           description: "Մոդելներն ուսուցված են լիցենզավորված բովանդակության վրա՝ առևտրային օգտագործման համար։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Գեներատիվ գործիքներ Ներածում և հնարավորություններ',
+          url: 'https://www.youtube.com/watch?v=KYt-wmN1D0k',
+        },
+        {
+          title: 'Վեկտորի գունավերակում տեքստային հրամանով',
+          url: 'https://www.youtube.com/watch?v=f6PxxZ5UTvE',
+        },
+      ],
     },
     {
       id: 'dimension',
@@ -740,7 +936,17 @@ export const products = {
           title: "Պատրաստի մոդելներ և նյութեր",
           description: "Պատրաստի ակտիվների գրադարանը արագացնում է նախատիպավորումը։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Պարզ 3D մակետներ բազային մարմներից',
+          url: 'https://www.youtube.com/watch?v=JyM6ApLwgR4',
+        },
+        {
+          title: '3D տեքստ, լուսավորություն և կոմպոզիցիա',
+          url: 'https://www.youtube.com/watch?v=fRbh4ysioZg',
+        },
+      ],
     },
     {
       id: 'generative-fill',
@@ -772,7 +978,17 @@ export const products = {
           title: "Չքայքայող խմբագրում",
           description: "Չքայքայող խմբագրումը թույլ է տալիս ուղղել գեներացիան առանց սկսելու նորից։",
         },
-      ]
+      ],
+      videoLessons: [
+        {
+          title: 'Գեներատիվ լցում Օրինակներ, խորհուրդներ, վարիացիաներ',
+          url: 'https://www.youtube.com/watch?v=Zk4hXR4qQ-c',
+        },
+        {
+          title: 'Գեներատիվ լցման ներածում Հիմնական քայլեր',
+          url: 'https://www.youtube.com/watch?v=Sp6K3qpVFO0',
+        },
+      ],
     },
   ],
 };

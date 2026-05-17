@@ -47,6 +47,9 @@ const T = {
     title: 'Համանման արտադրանքներ',
     subtitle: 'Բացահայտեք նույն կատեգորիայի այլ լուծումներ։',
   },
+  videos: {
+    embedAria: 'Տեսանյութ',
+  },
   cta: {
     title: (name) => `Փորձեք ${name}-ը անվճար`,
     subtitle:
@@ -98,6 +101,52 @@ function normalizeFeature(feature) {
   return { title: String(feature), description: undefined };
 }
 
+/**
+ * Parses a common video hosting URL and returns an embed `src`, or ''.
+ */
+function getVideoEmbedSrc(url) {
+  if (!url || typeof url !== 'string') return '';
+  try {
+    const parsed = new URL(url.trim(), 'https://example.com');
+    let id = '';
+
+    const host = parsed.hostname.toLowerCase();
+    const isKnownVideoHost =
+      host === 'youtu.be' || host.endsWith('youtube.com') || host.endsWith('youtube-nocookie.com');
+
+    if (!isKnownVideoHost) return '';
+
+    if (host === 'youtu.be') {
+      id = parsed.pathname.replace(/^\//, '').split(/[/?#]/)[0];
+    } else if (parsed.pathname.startsWith('/embed/')) {
+      id = parsed.pathname.slice('/embed/'.length).split(/[/?#]/)[0];
+    } else if (parsed.pathname.startsWith('/shorts/')) {
+      id = parsed.pathname.slice('/shorts/'.length).split(/[/?#]/)[0];
+    } else if (
+      parsed.pathname === '/watch' ||
+      parsed.pathname.startsWith('/watch/')
+    ) {
+      id = parsed.searchParams.get('v') || '';
+    }
+
+    return /^[\w-]{8,}$/i.test(id)
+      ? `https://www.youtube-nocookie.com/embed/${id}`
+      : '';
+  } catch {
+    return '';
+  }
+}
+
+/** Убирает разделители между частями названия урока (точка, тире) для единообразного UI. */
+function formatVideoLessonTitle(title) {
+  if (typeof title !== 'string') return '';
+  return title
+    .replace(/\s*[\u2014\u2013]\s*/g, ' ')
+    .replace(/\s*\.\s+/g, ' ')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
 function ProductDetailPage() {
   const { productId } = useParams();
   const product = getProductById(productId);
@@ -110,6 +159,10 @@ function ProductDetailPage() {
   const category = getCategoryById(product.categoryId);
   const similar = getSimilarProducts(product, 3);
   const shortCode = getShortCode(product);
+
+  const videoLessons = Array.isArray(product.videoLessons) ? product.videoLessons : [];
+  const featuredVideoEmbed =
+    videoLessons.length > 0 ? getVideoEmbedSrc(videoLessons[0].url) : '';
 
   // Пробная версия: пока только UX-демонстрация.
   const handleDownloadTrial = () => {
@@ -192,6 +245,45 @@ function ProductDetailPage() {
               })}
             </Grid>
           </div>
+
+          {videoLessons.length > 0 && (
+            <div className={styles.videoLessons}>
+              {featuredVideoEmbed ? (
+                <div className={styles.embedWrap}>
+                  <div className={styles.embedInner}>
+                    <iframe
+                      className={styles.embedFrame}
+                      title={
+                        formatVideoLessonTitle(videoLessons[0]?.title) || T.videos.embedAria
+                      }
+                      src={featuredVideoEmbed}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              ) : null}
+
+              <ul className={styles.videoList}>
+                {videoLessons.map((lesson, idx) => (
+                  <li key={`${product.id}-video-${idx}`}>
+                    <a
+                      href={lesson.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.videoLink}
+                    >
+                      <span className={styles.videoLinkTitle}>
+                        {formatVideoLessonTitle(lesson.title)}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {similar.length > 0 && (
             <div className={styles.similarBlock}>
