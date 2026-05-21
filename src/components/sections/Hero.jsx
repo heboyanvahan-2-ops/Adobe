@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Container from '../common/Container';
 import Button from '../common/Button';
 import styles from '../../styles/Hero.module.css';
@@ -18,6 +19,7 @@ import styles from '../../styles/Hero.module.css';
  *  - title           (строка, обязательная) — большой заголовок (h1).
  *  - subtitle        (строка) — подзаголовок под названием.
  *  - badge           (строка, опц.) — мини-бейдж над заголовком (например, «Դիպլոմային աշխատանք»).
+ *  - badgeTo         (строка, опц.) — путь React Router: при задании badge рендерится как ссылка на этот маршрут.
  *  - backgroundImage (строка, опц.) — URL картинки или CSS-фон.
  *  - backgroundColor (строка, опц.) — цвет/градиент.
  *  - height          ('full' | 'medium' | 'compact') — высота:
@@ -52,6 +54,7 @@ function Hero({
   title,
   subtitle,
   badge,
+  badgeTo,
   backgroundImage,
   backgroundColor,
   height = 'medium',
@@ -107,7 +110,13 @@ function Hero({
       <Container className={styles.inner}>
         {badge && (
           <span className={`${styles.badge} animate-fade-in-down`}>
-            {badge}
+            {badgeTo ? (
+              <Link to={badgeTo} className={styles.badgeLink}>
+                {badge}
+              </Link>
+            ) : (
+              badge
+            )}
           </span>
         )}
 

@@ -26,8 +26,9 @@ import styles from '../styles/ProductDetailPage.module.css';
  * Структура страницы:
  *   1. Hero            — заголовок-баннер с цветом продукта.
  *   2. Main       — плашка кода, бейдж категории, краткое и полное описание.
- *   3. Lower       — одна секция: сначала возможности (FeatureCard), затем
- *                    один блок «Համանման արտադրանքներ» (ProductCard).
+ *   3. Lower       — возможности (FeatureCard), при наличии видео-блок
+ *                    (локальные MP4 или встраиваемый первый YouTube), затем
+ *                    «Համանման արտադրանքներ» (ProductCard).
  *   4. CTA         — пробная версия + ссылка на категорию.
  */
 
@@ -137,6 +138,16 @@ function getVideoEmbedSrc(url) {
   }
 }
 
+/**
+ * @param {string} url
+ */
+function isLessonLocalMediaUrl(url) {
+  if (!url || typeof url !== 'string') return false;
+  const u = url.trim();
+  if (/youtube\.com|youtu\.be/i.test(u)) return false;
+  return /^\/[^?\s]+\.(mp4|webm|ogg|mov)(\?[^\s]*)?$/i.test(u);
+}
+
 /** Убирает разделители между частями названия урока (точка, тире) для единообразного UI. */
 function formatVideoLessonTitle(title) {
   if (typeof title !== 'string') return '';
@@ -161,8 +172,12 @@ function ProductDetailPage() {
   const shortCode = getShortCode(product);
 
   const videoLessons = Array.isArray(product.videoLessons) ? product.videoLessons : [];
-  const featuredVideoEmbed =
-    videoLessons.length > 0 ? getVideoEmbedSrc(videoLessons[0].url) : '';
+  const localLessons = videoLessons.filter((l) => isLessonLocalMediaUrl(l.url));
+  const firstYoutubeLesson = videoLessons.find((l) => Boolean(getVideoEmbedSrc(l.url)));
+  const featuredVideoEmbed = firstYoutubeLesson
+    ? getVideoEmbedSrc(firstYoutubeLesson.url)
+    : '';
+  const showVideoBlock = localLessons.length > 0 || Boolean(featuredVideoEmbed);
 
   // Пробная версия: пока только UX-демонстрация.
   const handleDownloadTrial = () => {
@@ -246,15 +261,44 @@ function ProductDetailPage() {
             </Grid>
           </div>
 
-          {videoLessons.length > 0 && (
+          {showVideoBlock ? (
             <div className={styles.videoLessons}>
+              {localLessons.length > 0 && (
+                <div className={styles.localVideosRow}>
+                  {localLessons.map((lesson, idx) => {
+                    const formatted =
+                      formatVideoLessonTitle(lesson.title) ||
+                      `${T.videos.embedAria} ${idx + 1}`;
+                    return (
+                      <figure key={`${product.id}-local-${idx}`} className={styles.videoFigure}>
+                        <div className={styles.embedWrap}>
+                          <div className={styles.embedInnerCompact}>
+                            <video
+                              className={styles.nativeVideo}
+                              controls
+                              playsInline
+                              preload="metadata"
+                              aria-label={formatted}
+                              title={formatted}
+                            >
+                              <source src={lesson.url} />
+                            </video>
+                          </div>
+                        </div>
+                        <figcaption className={styles.videoCaption}>{formatted}</figcaption>
+                      </figure>
+                    );
+                  })}
+                </div>
+              )}
+
               {featuredVideoEmbed ? (
                 <div className={styles.embedWrap}>
                   <div className={styles.embedInner}>
                     <iframe
                       className={styles.embedFrame}
                       title={
-                        formatVideoLessonTitle(videoLessons[0]?.title) || T.videos.embedAria
+                        formatVideoLessonTitle(firstYoutubeLesson?.title) || T.videos.embedAria
                       }
                       src={featuredVideoEmbed}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -265,25 +309,8 @@ function ProductDetailPage() {
                   </div>
                 </div>
               ) : null}
-
-              <ul className={styles.videoList}>
-                {videoLessons.map((lesson, idx) => (
-                  <li key={`${product.id}-video-${idx}`}>
-                    <a
-                      href={lesson.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.videoLink}
-                    >
-                      <span className={styles.videoLinkTitle}>
-                        {formatVideoLessonTitle(lesson.title)}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </div>
-          )}
+          ) : null}
 
           {similar.length > 0 && (
             <div className={styles.similarBlock}>

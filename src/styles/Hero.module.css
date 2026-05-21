@@ -220,6 +220,22 @@
   -webkit-backdrop-filter: none;
 }
 
+.badgeLink {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.badgeLink:hover {
+  opacity: 0.88;
+}
+
+.badgeLink:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* ------------- Заголовок (mobile-first) ------------- */
 /* Mobile: 36px → Desktop: 60px+, как просили в запросе */
 

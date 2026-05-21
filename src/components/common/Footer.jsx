@@ -109,6 +109,7 @@ const T = {
   contact: 'Կապ հաստատել',
   home: 'Գլխավոր',
   about: 'Adobe-ի մասին',
+  quiz: 'Թեստեր',
   contactPage: 'Կապ',
   officialSite: 'Պաշտոնական կայք ↗',
   emailAria: (email) => `Գրել ${email} հասցեին`,
@@ -180,6 +181,7 @@ function Footer() {
             <ul className={styles.linkList}>
               <li><Link to="/" className={styles.link}>{T.home}</Link></li>
               <li><Link to="/about" className={styles.link}>{T.about}</Link></li>
+              <li><Link to="/quiz" className={styles.link}>{T.quiz}</Link></li>
               <li><Link to="/contact" className={styles.link}>{T.contactPage}</Link></li>
               <li>
                 <a

@@ -29,6 +29,7 @@ const NAV_STRUCTURE = [
     ],
   },
 
+  { type: 'link', to: '/quiz', label: 'Թեստեր' },
   { type: 'link', to: '/contact', label: 'Կապ' },
 ];
 

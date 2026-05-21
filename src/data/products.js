@@ -84,12 +84,12 @@ export const products = {
       ],
       videoLessons: [
         {
-          title: 'Ընտրության գործիքներ Հիմնական տեխնիկա սկսնակների համար',
-          url: 'https://www.youtube.com/watch?v=PQtDXAQs37U',
+          title: 'Գունային բալանս',
+          url: '/videos/photoshop/color-balance.mp4',
         },
         {
-          title: 'Գեներատիվ լցում Օբյեկտներ, կադրի ընդլայնում, առաջարկներ',
-          url: 'https://www.youtube.com/watch?v=Zk4hXR4qQ-c',
+          title: 'Մաշկի նրբացում',
+          url: '/videos/photoshop/skin-smoothing.mp4',
         },
       ],
     },

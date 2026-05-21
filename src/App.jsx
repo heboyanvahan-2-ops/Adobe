@@ -8,6 +8,7 @@ import ExperienceCloudPage from './pages/ExperienceCloudPage';
 import ContentCommercePage from './pages/ContentCommercePage';
 import ThreeDAIPage from './pages/ThreeDAIPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import QuizPage from './pages/QuizPage';
 import ContactPage from './pages/ContactPage';
 
 /**
@@ -25,6 +26,8 @@ import ContactPage from './pages/ContactPage';
  *   /content-commerce       — ContentCommercePage
  *   /3d-ai                  — ThreeDAIPage
  *   /product/:productId     — ProductDetailPage
+ *   /quiz                   — QuizPage, մակարդակների ընտրություն
+ *   /quiz/:productId        — QuizPage, մեկ թեմա (photoshop, illustrator, …)
  *   /contact                — ContactPage
  *   *                       — HomePage (фолбэк для неизвестных URL)
  */
@@ -40,6 +43,8 @@ function App() {
         <Route path="/content-commerce" element={<ContentCommercePage />} />
         <Route path="/3d-ai" element={<ThreeDAIPage />} />
         <Route path="/product/:productId" element={<ProductDetailPage />} />
+        <Route path="/quiz" element={<QuizPage />} />
+        <Route path="/quiz/:productId" element={<QuizPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
