@@ -88,10 +88,6 @@ export const products = {
           /* ?v ը ստիպում են զննարկիչին նոր ֆայլ բեռնել ավելիս տեսանյութը փոխելու դեպքում */
           url: '/videos/photoshop/color-balance.mp4?v=2',
         },
-        {
-          title: 'Մաշկի նրբացում',
-          url: '/videos/photoshop/skin-smoothing.mp4',
-        },
       ],
     },
     {
