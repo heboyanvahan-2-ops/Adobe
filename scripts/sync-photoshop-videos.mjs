@@ -10,7 +10,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
 const destDir = path.join(root, 'public', 'videos', 'photoshop');
 
-const targetsByMatch = [{ re: /գունային|balans|balance/i, out: 'color-balance.mp4' }];
+const targetsByMatch = [
+  { re: /գունային|balans|balance/i, out: 'color-balance.mp4' },
+  { re: /մաշկ|skin|smoothing/i, out: 'skin-smoothing.mp4' },
+];
 
 let mp4Files = [];
 
@@ -31,7 +34,8 @@ if (mp4Files.length === 0) {
   console.log(
     'No .mp4 files in project root. Either copy Armenian-named videos there and re-run,\n' +
       'or place files manually as:\n' +
-      `  ${path.relative(root, destDir)}\\color-balance.mp4\n`,
+      `  ${path.relative(root, destDir)}\\color-balance.mp4\n` +
+      `  ${path.relative(root, destDir)}\\skin-smoothing.mp4`,
   );
   process.exit(0);
 }

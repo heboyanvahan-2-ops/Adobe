@@ -82,13 +82,6 @@ export const products = {
           description: "Կիսվեք պրոեկտներով Lightroom եւ Illustrator-ի միջով մեկ հոսքում։",
         },
       ],
-      videoLessons: [
-        {
-          title: 'Գունային բալանս',
-          /* ?v ը ստիպում են զննարկիչին նոր ֆայլ բեռնել ավելիս տեսանյութը փոխելու դեպքում */
-          url: '/videos/photoshop/color-balance.mp4?v=2',
-        },
-      ],
     },
     {
       id: 'illustrator',

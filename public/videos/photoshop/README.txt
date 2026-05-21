@@ -1,12 +1,7 @@
-Photoshop product page expects this URL (CRA public folder):
+Photoshop product page currently has no local lesson videos bundled here.
 
-  /videos/photoshop/color-balance.mp4    — տեսագր «Գունային բալանս»
+To add lessons again:
+1. Put `*.mp4` files in `public/videos/photoshop/` with stable names,
+2. Add a `videoLessons` array on the `photoshop` object in `src/data/products.js`,
 
-Either copy/rename your files here manually, or from project root run:
-
-  npm run videos:photoshop
-
-That sync script matches Armenian filenames in the project root and copies them into this folder.
-
-After replacing a video file, bump the query on that lesson URL in src/data/products.js
-(e.g. color-balance.mp4?v=2 -> ?v=3) so the browser reloads instead of cached video.
+or run `npm run videos:photoshop` after placing Armenian-named `.mp4` files in the project root (see `scripts/sync-photoshop-videos.mjs`).

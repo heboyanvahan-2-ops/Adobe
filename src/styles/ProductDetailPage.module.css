@@ -236,7 +236,7 @@
   border-top: 1px solid var(--border-color);
 }
 
-/* Local MP4 clips — grid (2 cols when paired), full viewport width breakout */
+/* Local bundled videos — two columns, full viewport width (break out of Container) */
 .localVideosRow {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -277,10 +277,6 @@
   .localVideosRow .videoCaption {
     font-size: 1.125rem;
   }
-}
-
-.localVideosRow:has(> figure:only-child) {
-  grid-template-columns: 1fr;
 }
 
 .embedInnerCompact {
