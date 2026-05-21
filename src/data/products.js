@@ -85,7 +85,8 @@ export const products = {
       videoLessons: [
         {
           title: 'Գունային բալանս',
-          url: '/videos/photoshop/color-balance.mp4',
+          /* ?v ը ստիպում են զննարկիչին նոր ֆայլ բեռնել ավելիս տեսանյութը փոխելու դեպքում */
+          url: '/videos/photoshop/color-balance.mp4?v=2',
         },
         {
           title: 'Մաշկի նրբացում',
