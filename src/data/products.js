@@ -82,6 +82,16 @@ export const products = {
           description: "Կիսվեք պրոեկտներով Lightroom եւ Illustrator-ի միջով մեկ հոսքում։",
         },
       ],
+      videoLessons: [
+        {
+          title: 'Մաշկի նրբացում',
+          url: '/videos/photoshop/skin-smoothing.mp4?v=3',
+        },
+        {
+          title: 'Գունային բալանս',
+          url: '/videos/photoshop/color-balance.mp4?v=3',
+        },
+      ],
     },
     {
       id: 'illustrator',
