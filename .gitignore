@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# локальные mp4 в корне (дубликаты/черновики); релизные ролики — в public/videos/
+/*.mp4
