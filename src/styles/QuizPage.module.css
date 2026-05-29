@@ -836,6 +836,87 @@
   border-color: color-mix(in srgb, #ef4444 35%, transparent);
 }
 
+.answerReview {
+  margin-bottom: var(--space-5);
+  text-align: left;
+}
+
+.answerReviewTitle {
+  margin: 0 0 var(--space-3);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+.answerReviewList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.answerReviewItem {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--white);
+}
+
+.answerReviewOk {
+  border-color: color-mix(in srgb, #10b981 45%, var(--border-color));
+  background: color-mix(in srgb, #10b981 8%, var(--light-bg));
+}
+
+.answerReviewBad {
+  border-color: color-mix(in srgb, #ef4444 40%, var(--border-color));
+  background: color-mix(in srgb, #ef4444 6%, var(--light-bg));
+}
+
+.answerReviewQuestion {
+  margin: 0 0 var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
+
+.answerReviewNum {
+  color: var(--quiz-accent, var(--primary-red));
+}
+
+.answerReviewLabel {
+  font-weight: 800;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.answerReviewUser {
+  margin: 0 0 var(--space-2);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: #b91c1c;
+}
+
+.answerReviewCorrect {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: #047857;
+  font-weight: 600;
+}
+
+.answerReviewOk .answerReviewCorrect {
+  margin-top: 0;
+}
+
 .resultsActions {
   display: flex;
   flex-wrap: wrap;

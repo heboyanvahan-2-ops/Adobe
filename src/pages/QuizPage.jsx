@@ -4,30 +4,30 @@ import PageLayout from '../components/layouts/PageLayout';
 import Container from '../components/common/Container';
 import Hero from '../components/sections/Hero';
 import Button from '../components/common/Button';
-import { quizLevels, quizBasePath, getQuizLevelByProductId } from '../data/quiz';
+import { quizLevels, quizBasePath, getQuizLevelByProductId, getTotalQuizQuestions } from '../data/quiz';
 import { getProductById } from '../data/products';
 import styles from '../styles/QuizPage.module.css';
 
 const OPTION_LETTERS = ['Ա', 'Բ', 'Գ', 'Դ'];
-const TOTAL_QUESTIONS = quizLevels.length * 6;
+const TOTAL_QUESTIONS = getTotalQuizQuestions();
 
 const T = {
-  pageTitle: 'Թեստեր · Adobe արտադրանք',
+  pageTitle: 'Թեստեր · Adobe Photoshop',
   intro:
-    'Ընտրիր մեկ մակարդակ՝ վեց Adobe արտադրանքից։ Յուրաքանչյուր մակարդակում 6 հարց, բոլորը հայերեն։',
-  pickerHint: 'Յուրաքանչյուր քարտի բոլոր հարցերը նույն մեկ արտադրանքին են առնչվում։',
+    'Ընտրիր Photoshop-ի բաժինը։ Յուրաքանչյուր մակարդակում 5 հարց, նույն հարցերը, ինչ դասի էջում։',
+  pickerHint: 'Յուրաքանչյուր քարտը համապատասխանում է /product/photoshop բաժնի թեստին։',
   statsLevels: 'մակարդակ',
   statsQuestions: 'հարց',
-  ariaForm: 'Adobe արտադրանքների թեստ՝ ընտրված մակարդակ',
+  ariaForm: 'Adobe Photoshop թեստ՝ ընտրված բաժին',
   checkAnswers: 'Ավարտել և ստուգել',
   nextQuestion: 'Հաջորդ',
   prevQuestion: 'Նախորդ',
   resetQuiz: 'Նորից',
-  backLevels: 'Մակարդակներ',
+  backLevels: 'Բաժիններ',
   startLevel: 'Սկսել',
   stepAria: (i, total) => `Հարց ${i} ${total}-ից`,
   backHome: 'Գլխավոր',
-  learnProduct: 'Արտադրանքի մասին',
+  learnProduct: 'Դասի նյութ',
   retryLevel: 'Կրկին փորձել',
   seeReview: 'Տեսնել պատասխանները',
   backToResults: 'Արդյունք',
@@ -35,14 +35,19 @@ const T = {
   progressLabel: (done, total) => `${done}/${total} պատասխան`,
   questionOf: (i, total) => `Հարց ${i}/${total}`,
   breakdownTitle: 'Պատասխանների ամփոփում',
+  reviewCorrectTitle: 'Ճիշտ պատասխաններ',
+  reviewYourAnswer: 'Ձեր պատասխանը՝',
+  reviewCorrectAnswer: 'Ճիշտ պատասխան՝',
 };
 
 function getLevelMeta(level) {
-  const product = getProductById(level.productId);
+  const product = getProductById('photoshop');
+  const sectionTitle = level.title.split(' · ')[1] ?? level.title;
   return {
-    accent: product?.color ?? '#FA0F01',
-    shortCode: product?.shortCode ?? 'Ad',
-    productName: product?.name ?? level.title.split(' · ')[1] ?? 'Adobe',
+    accent: product?.color ?? '#31A8FF',
+    shortCode: product?.shortCode ?? 'Ps',
+    productName: product?.name ?? 'Adobe Photoshop',
+    sectionTitle,
   };
 }
 
@@ -57,7 +62,11 @@ function computeScore(selections, questions) {
 function getScoreFeedback(score, total) {
   const pct = total ? score / total : 0;
   if (pct >= 1) {
-    return { tone: 'excellent', title: 'Գերազանց', message: 'Բոլոր 6 պատասխանները ճիշտ են։' };
+    return {
+      tone: 'excellent',
+      title: 'Գերազանց',
+      message: `Բոլոր ${total} պատասխանները ճիշտ են։`,
+    };
   }
   if (pct >= 0.83) {
     return { tone: 'great', title: 'Շատ լավ', message: 'Գրեթե կատարյալ արդյունք։' };
@@ -208,7 +217,7 @@ function QuizPage() {
 
   const heroBadge = 'Թեստեր';
   const heroTitle = level
-    ? meta?.productName ?? level.title.split(' · ')[1]
+    ? meta?.sectionTitle ?? level.title.split(' · ')[1]
     : T.pageTitle.split(' · ')[0];
   const heroSubtitle = level
     ? submitted && !reviewMode
@@ -238,7 +247,7 @@ function QuizPage() {
               <section className={styles.picker} aria-labelledby="quiz-picker-heading">
                 <header className={styles.pickerHeader}>
                   <h2 id="quiz-picker-heading" className={styles.pickerTitle}>
-                    Ընտրիր մակարդակ
+                    Ընտրիր բաժին
                   </h2>
                   <p className={styles.intro}>{T.intro}</p>
                   <ul className={styles.statsRow} aria-label="Թեստի ամփոփում">
@@ -257,7 +266,7 @@ function QuizPage() {
                 <ul className={styles.levelGrid}>
                   {quizLevels.map((lv) => {
                     const lvMeta = getLevelMeta(lv);
-                    const productLabel = lv.title.split(' · ')[1] ?? lvMeta.productName;
+                    const sectionLabel = lv.title.split(' · ')[1] ?? lvMeta.sectionTitle;
                     const levelPath = `${quizBasePath}/${lv.productId}`;
                     return (
                       <li key={lv.level}>
@@ -268,7 +277,7 @@ function QuizPage() {
                           <Link
                             to={levelPath}
                             className={styles.levelCardTap}
-                            aria-label={`${T.startLevel} — ${productLabel}`}
+                            aria-label={`${T.startLevel} — ${sectionLabel}`}
                           >
                             <div className={styles.levelCardHero}>
                               <span className={styles.levelBadge}>Մակարդակ {lv.level}</span>
@@ -277,16 +286,19 @@ function QuizPage() {
                               </span>
                             </div>
                             <div className={styles.levelCardBody}>
-                              <h3 className={styles.levelCardTitle}>{productLabel}</h3>
+                              <h3 className={styles.levelCardTitle}>{sectionLabel}</h3>
                               <p className={styles.levelCardSub}>{lv.subtitle}</p>
-                              <p className={styles.levelCardMeta}>6 հարց</p>
+                              <p className={styles.levelCardMeta}>{lv.questions.length} հարց</p>
                             </div>
                           </Link>
                           <div className={styles.levelCardFooter}>
                             <Link to={levelPath} className={styles.levelBtn}>
                               {T.startLevel}
                             </Link>
-                            <Link to={`/product/${lv.productId}`} className={styles.levelLink}>
+                            <Link
+                              to={`/product/photoshop#${lv.productId}`}
+                              className={styles.levelLink}
+                            >
                               {T.learnProduct}
                             </Link>
                           </div>
@@ -590,6 +602,44 @@ function QuizPage() {
                         );
                       })}
                     </ul>
+
+                    <div className={styles.answerReview}>
+                      <h3 className={styles.answerReviewTitle}>{T.reviewCorrectTitle}</h3>
+                      <ol className={styles.answerReviewList}>
+                        {questions.map((item, i) => {
+                          const ok = answers[i] === item.correctIndex;
+                          const userAnswer =
+                            answers[i] !== null ? item.options[answers[i]] : '—';
+                          const correctAnswer = item.options[item.correctIndex];
+
+                          return (
+                            <li
+                              key={`review-${i}`}
+                              className={`${styles.answerReviewItem} ${ok ? styles.answerReviewOk : styles.answerReviewBad}`}
+                            >
+                              <p className={styles.answerReviewQuestion}>
+                                <span className={styles.answerReviewNum}>{i + 1}.</span>{' '}
+                                {item.question}
+                              </p>
+                              {!ok && (
+                                <p className={styles.answerReviewUser}>
+                                  <span className={styles.answerReviewLabel}>
+                                    {T.reviewYourAnswer}
+                                  </span>{' '}
+                                  {userAnswer}
+                                </p>
+                              )}
+                              <p className={styles.answerReviewCorrect}>
+                                <span className={styles.answerReviewLabel}>
+                                  {T.reviewCorrectAnswer}
+                                </span>{' '}
+                                {correctAnswer}
+                              </p>
+                            </li>
+                          );
+                        })}
+                      </ol>
+                    </div>
 
                     <div className={styles.resultsActions}>
                       <button

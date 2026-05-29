@@ -1,19 +1,21 @@
 /*
  * HomePage.module.css
- * Стили только для HomePage (заголовки секций, отступы между секциями).
- * Все «крупные» компоненты (Hero, Stats, CTASection, CategoryCard)
- * имеют собственные CSS-модули — здесь только то, что специфично странице.
+ * Стили только для HomePage (заголовки секций, галерея showcase).
  */
 
-/* ---------- Секция категорий ---------- */
+/* ---------- Секция showcase (галерея) ---------- */
 
-.categoriesSection {
-  padding: var(--space-8) 0;
+.showcaseSection {
+  padding: var(--space-8) 0 var(--space-9);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 160, 222, 0.08) 0%, transparent 70%),
+    linear-gradient(180deg, var(--light-bg) 0%, var(--light-surface) 100%);
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
-  .categoriesSection {
-    padding: var(--space-9) 0;
+  .showcaseSection {
+    padding: var(--space-9) 0 calc(var(--space-9) + var(--space-4));
   }
 }
 
@@ -28,6 +30,7 @@
   margin: 0;
   font-weight: 800;
   letter-spacing: -0.02em;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
 }
 
 .sectionSubtitle {
@@ -35,4 +38,165 @@
   color: var(--text-light);
   font-size: var(--fs-md);
   line-height: 1.6;
+}
+
+.showcaseGallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .showcaseGallery {
+    gap: var(--space-6);
+  }
+}
+
+.showcaseCard {
+  margin: 0;
+}
+
+.showcaseFrame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    0 32px 64px rgba(10, 14, 39, 0.14),
+    0 8px 24px rgba(0, 160, 222, 0.08),
+    0 0 0 1px rgba(0, 160, 222, 0.1);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+
+.showcaseFrame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 160, 222, 0.65) 0%,
+    rgba(157, 78, 221, 0.4) 45%,
+    rgba(255, 0, 0, 0.25) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.showcaseFrame:hover {
+  transform: translateY(-6px) scale(1.008);
+  box-shadow:
+    0 40px 80px rgba(10, 14, 39, 0.18),
+    0 12px 32px rgba(0, 160, 222, 0.14),
+    0 0 0 1px rgba(0, 160, 222, 0.18);
+}
+
+.showcaseImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: middle;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.showcaseFrame:hover .showcaseImage {
+  transform: scale(1.04);
+}
+
+.showcaseOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 45%,
+    rgba(10, 14, 39, 0.55) 100%
+  );
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+.showcaseFrame:hover .showcaseOverlay {
+  opacity: 0.95;
+}
+
+.showcaseCaption {
+  position: absolute;
+  left: var(--space-5);
+  bottom: var(--space-5);
+  z-index: 3;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(10, 14, 39, 0.45);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Главное изображение — на всю ширину, высокое */
+.showcaseHero .showcaseFrame {
+  border-radius: clamp(var(--radius-lg), 2vw, var(--radius-xl));
+}
+
+.showcaseHero .showcaseImage {
+  aspect-ratio: 21 / 9;
+  min-height: clamp(220px, 42vw, 520px);
+}
+
+@media (min-width: 1024px) {
+  .showcaseHero .showcaseImage {
+    min-height: clamp(380px, 38vw, 580px);
+  }
+}
+
+/* Три изображения в ряд */
+.showcaseGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .showcaseGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .showcaseGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+.showcaseTile .showcaseImage {
+  aspect-ratio: 4 / 3;
+  min-height: clamp(200px, 28vw, 320px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcaseFrame,
+  .showcaseImage {
+    transition: none;
+  }
+
+  .showcaseFrame:hover {
+    transform: none;
+  }
+
+  .showcaseFrame:hover .showcaseImage {
+    transform: none;
+  }
 }

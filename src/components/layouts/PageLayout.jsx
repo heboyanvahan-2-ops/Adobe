@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../common/Header';
-import Footer from '../common/Footer';
 import styles from '../../styles/PageLayout.module.css';
 
 /**
  * PageLayout — единая обёртка для всех страниц.
  *
  * Что делает:
- *  - рендерит Header сверху, Footer снизу, основной контент в середине;
+ *  - рендерит Header сверху и основной контент;
  *  - при смене маршрута проматывает страницу к началу (UX);
  *  - устанавливает <title> в заголовок вкладки браузера, если передан проп `title`.
  *
@@ -25,9 +24,9 @@ function PageLayout({ children, title }) {
 
   useEffect(() => {
     if (title) {
-      document.title = `${title} — Adobe Showcase`;
+      document.title = `${title} — Adobe Photoshop`;
     } else {
-      document.title = 'Adobe Showcase';
+      document.title = 'Adobe Photoshop';
     }
   }, [title]);
 
@@ -35,7 +34,6 @@ function PageLayout({ children, title }) {
     <div className={styles.layout}>
       <Header />
       <main className={styles.main}>{children}</main>
-      <Footer />
     </div>
   );
 }

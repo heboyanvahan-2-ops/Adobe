@@ -15,22 +15,13 @@ import styles from '../../styles/Navigation.module.css';
  */
 const NAV_STRUCTURE = [
   { type: 'link', to: '/',       label: 'Գլխավոր',       end: true },
-  { type: 'link', to: '/about',  label: 'Adobe-ի մասին' },
+  { type: 'link', to: '/about',  label: 'Adobe Photoshop-ի Մասին' },
 
-  {
-    type: 'group',
-    label: 'Կատեգորիաներ',
-    items: [
-      { to: '/creative-cloud',   label: 'Creative Cloud',     color: '#00A0DE' },
-      { to: '/document-cloud',   label: 'Document Cloud',     color: '#FFB800' },
-      { to: '/experience-cloud', label: 'Experience Cloud',   color: '#00CC66' },
-      { to: '/content-commerce', label: 'Content & Commerce', color: '#FF6B35' },
-      { to: '/3d-ai',            label: '3D & AI',            color: '#9D4EDD' },
-    ],
-  },
+  { type: 'link', to: '/product/photoshop', label: 'Adobe Photoshop' },
+
+  { type: 'link', to: '/video-lessons', label: 'Տեսային դասեր' },
 
   { type: 'link', to: '/quiz', label: 'Թեստեր' },
-  { type: 'link', to: '/contact', label: 'Կապ' },
 ];
 
 /* ============================================================

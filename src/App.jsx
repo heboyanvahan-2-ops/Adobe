@@ -7,9 +7,10 @@ import DocumentCloudPage from './pages/DocumentCloudPage';
 import ExperienceCloudPage from './pages/ExperienceCloudPage';
 import ContentCommercePage from './pages/ContentCommercePage';
 import ThreeDAIPage from './pages/ThreeDAIPage';
+import PhotoshopPage from './pages/PhotoshopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import QuizPage from './pages/QuizPage';
-import ContactPage from './pages/ContactPage';
+import VideoLessonsPage from './pages/VideoLessonsPage';
 
 /**
  * Корневой компонент приложения.
@@ -26,9 +27,9 @@ import ContactPage from './pages/ContactPage';
  *   /content-commerce       — ContentCommercePage
  *   /3d-ai                  — ThreeDAIPage
  *   /product/:productId     — ProductDetailPage
+ *   /video-lessons          — VideoLessonsPage
  *   /quiz                   — QuizPage, մակարդակների ընտրություն
  *   /quiz/:productId        — QuizPage, մեկ թեմա (photoshop, illustrator, …)
- *   /contact                — ContactPage
  *   *                       — HomePage (фолбэк для неизвестных URL)
  */
 function App() {
@@ -42,10 +43,11 @@ function App() {
         <Route path="/experience-cloud" element={<ExperienceCloudPage />} />
         <Route path="/content-commerce" element={<ContentCommercePage />} />
         <Route path="/3d-ai" element={<ThreeDAIPage />} />
+        <Route path="/product/photoshop" element={<PhotoshopPage />} />
         <Route path="/product/:productId" element={<ProductDetailPage />} />
+        <Route path="/video-lessons" element={<VideoLessonsPage />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/quiz/:productId" element={<QuizPage />} />
-        <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </BrowserRouter>

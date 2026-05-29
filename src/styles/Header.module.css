@@ -66,18 +66,26 @@
   color: var(--text-dark);
 }
 
-.logo:hover .logoMark {
-  transform: rotate(-6deg) scale(1.05);
-}
-
-/* SVG-логотип */
+/* Иконка Ps */
 .logoMark {
   width: 32px;
   height: 32px;
-  color: var(--primary-red);
-  filter: drop-shadow(0 2px 4px rgba(255, 0, 0, 0.25));
-  transition: transform var(--transition-base);
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
+  border-radius: 8px;
+  background: #31a8ff;
+  color: #001e36;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(49, 168, 255, 0.35);
+  transition: transform var(--transition-base);
+}
+
+.logo:hover .logoMark {
+  transform: scale(1.05);
 }
 
 /* Текст логотипа */
@@ -86,11 +94,8 @@
   white-space: nowrap;
 }
 
-/* Акцентная часть текста — слово "Showcase" более лёгкого начертания */
-.logoAccent {
-  font-weight: 400;
-  color: var(--text-light);
-  margin-left: 4px;
+.logoProduct {
+  color: #31a8ff;
 }
 
 /* На экранах от 480px показываем текст рядом с лого */
@@ -105,5 +110,6 @@
   .logoMark {
     width: 36px;
     height: 36px;
+    font-size: 1.05rem;
   }
 }

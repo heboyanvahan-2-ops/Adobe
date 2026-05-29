@@ -4,38 +4,18 @@ import Navigation from './Navigation';
 import styles from '../../styles/Header.module.css';
 
 /**
- * AdobeLogo — SVG-логотип Adobe (классический треугольник «A»).
- * Размер регулируется через CSS (width/height у .logoMark).
- * fill="currentColor" — цвет наследуется от родителя.
+ * PhotoshopLogo — иконка приложения Adobe Photoshop (Ps на синем фоне).
  */
-function AdobeLogo() {
+function PhotoshopLogo() {
   return (
-    <svg
-      className={styles.logoMark}
-      viewBox="0 0 240 234"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        fill="currentColor"
-        d="M150 0h90v234L150 0zM90 0H0v234L90 0zM120 86l57 148h-37l-17-43H81L120 86z"
-      />
-    </svg>
+    <span className={styles.logoMark} aria-hidden="true">
+      Ps
+    </span>
   );
 }
 
 /**
  * Header — верхняя панель сайта.
- *
- * Особенности:
- *  - Sticky: прилипает к верху при скролле (position: sticky).
- *  - Полупрозрачный фон с blur-эффектом (как у современных сайтов).
- *  - Логотип Adobe (SVG) — кликабельная ссылка на главную.
- *  - Адаптивная навигация (см. компонент Navigation).
- *
- * Структура (CSS Grid в .inner):
- *   [ Логотип ]  [ Spacer ]  [ Навигация ]
  */
 function Header() {
   return (
@@ -44,11 +24,11 @@ function Header() {
         <Link
           to="/"
           className={styles.logo}
-          aria-label="Adobe Showcase — Գլխավոր էջ"
+          aria-label="Adobe Photoshop — Գլխավոր էջ"
         >
-          <AdobeLogo />
+          <PhotoshopLogo />
           <span className={styles.logoText}>
-            Adobe<span className={styles.logoAccent}>Showcase</span>
+            Adobe <span className={styles.logoProduct}>Photoshop</span>
           </span>
         </Link>
 

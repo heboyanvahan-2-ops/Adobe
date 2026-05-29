@@ -5,7 +5,7 @@
  * Адаптивность через CSS Grid:
  *   mobile         — 1 колонка
  *   >= 640px       — 2 колонки
- *   >= 1024px      — 4 колонки (бренд занимает 1.4fr, остальные по 1fr)
+ *   >= 1024px      — 3 колонки (бренд занимает 1.4fr, остальные по 1fr)
  */
 
 .footer {
@@ -37,8 +37,9 @@
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: 1.4fr repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-7);
+    align-items: start;
   }
 }
 
@@ -122,71 +123,6 @@
   border-radius: 50%;
   flex-shrink: 0;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
-}
-
-/* ----- Email-контакт ----- */
-
-.contact {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 10px 14px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-md);
-  font-size: var(--fs-sm);
-  color: #cfd3e8;
-  width: fit-content;
-  max-width: 100%;
-  word-break: break-all;
-  transition: background-color var(--transition-fast),
-              border-color var(--transition-fast),
-              color var(--transition-fast);
-}
-
-.contact:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-/* ----- Социальные сети ----- */
-
-.socialLabel {
-  margin-top: var(--space-2);
-  font-size: var(--fs-xs);
-  color: #6b7099;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.socialList {
-  display: flex;
-  gap: var(--space-2);
-  flex-wrap: wrap;
-}
-
-.socialLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #9ba1c4;
-  transition: background-color var(--transition-base),
-              color var(--transition-base),
-              border-color var(--transition-base),
-              box-shadow var(--transition-fast);
-}
-
-.socialLink:hover {
-  background-color: var(--primary-red);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.25);
 }
 
 /* ----- Нижняя строка ----- */
