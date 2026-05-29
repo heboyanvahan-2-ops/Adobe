@@ -5,10 +5,10 @@ import { videoLessons } from '../data/videoLessons';
 import styles from '../styles/VideoLessonsPage.module.css';
 
 const T = {
-  pageTitle: 'Տեսային դասեր',
+  pageTitle: 'Տեսադասեր',
   hero: {
     badge: 'Adobe Photoshop',
-    title: 'Տեսային դասեր',
+    title: 'Տեսադասեր',
     subtitle:
       'Կարճ տեսագրեր Photoshop-ի գործիքներով աշխատելու համար։ ' +
       'Յուրաքանչյուր դասում՝ թեմա, վերնագիր, նկարագրություն և տեսանյութ։',

@@ -19,7 +19,7 @@ const NAV_STRUCTURE = [
 
   { type: 'link', to: '/product/photoshop', label: 'Adobe Photoshop' },
 
-  { type: 'link', to: '/video-lessons', label: 'Տեսային դասեր' },
+  { type: 'link', to: '/video-lessons', label: 'Տեսադասեր' },
 
   { type: 'link', to: '/quiz', label: 'Թեստեր' },
 ];

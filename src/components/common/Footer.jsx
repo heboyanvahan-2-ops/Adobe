@@ -7,7 +7,7 @@ const T = {
   home: 'Գլխավոր',
   about: 'Adobe Photoshop-ի Մասին',
   lessons: 'Ուսումնական նյութ',
-  videoLessons: 'Տեսային դասեր',
+  videoLessons: 'Տեսադասեր',
   quiz: 'Թեստեր',
   copyright: (year) => `© ${year} Adobe Showcase`,
   trademark:

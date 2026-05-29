@@ -1,5 +1,5 @@
 /**
- * Տեսային դասեր — մեկ աղբյուր (theme, title, description, video).
+ * Տեսադասեր — մեկ աղբյուր (theme, title, description, video).
  * Նոր դաս ավելացնելու համար լրացրեք զանգվածը ներքև։
  */
 export const videoLessons = [
