@@ -31,7 +31,7 @@ const SHOWCASE_IMAGES = [
   {
     src: '/images/photoshop-brush.png',
     alt: 'Խոշորացված brush stroke և տեքստուրա Photoshop-ում',
-    label: 'Վրձին և հյուսվածք',
+    label: 'Գեղանկարչական տեքստուրա',
   },
 ];
 
