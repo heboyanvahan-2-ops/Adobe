@@ -21,17 +21,17 @@ const SHOWCASE_IMAGES = [
   {
     src: '/images/photoshop-color.png',
     alt: 'Գունային կարգավորում և տոնальային correction Photoshop-ում',
-    label: 'Color Grading',
+    label: 'Գունային գամմա',
   },
   {
     src: '/images/photoshop-composite.png',
     alt: 'Բազմ շերտերի կոլաժ Photoshop-ում',
-    label: 'Composite',
+    label: 'Կոմպոզիցիա',
   },
   {
     src: '/images/photoshop-brush.png',
     alt: 'Խոշորացված brush stroke և տեքստուրա Photoshop-ում',
-    label: 'Brush & Texture',
+    label: 'Վրձին և հյուսվածք',
   },
 ];
 
