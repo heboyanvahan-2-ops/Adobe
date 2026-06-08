@@ -13,9 +13,6 @@ const TOTAL_QUESTIONS = getTotalQuizQuestions();
 
 const T = {
   pageTitle: 'Թեստեր · Adobe Photoshop',
-  intro:
-    'Ընտրիր Photoshop-ի բաժինը։ Յուրաքանչյուր մակարդակում 5 հարց, նույն հարցերը, ինչ դասի էջում։',
-  pickerHint: 'Յուրաքանչյուր քարտը համապատասխանում է /product/photoshop բաժնի թեստին։',
   statsLevels: 'մակարդակ',
   statsQuestions: 'հարց',
   ariaForm: 'Adobe Photoshop թեստ՝ ընտրված բաժին',
@@ -27,7 +24,7 @@ const T = {
   startLevel: 'Սկսել',
   stepAria: (i, total) => `Հարց ${i} ${total}-ից`,
   backHome: 'Գլխավոր',
-  learnProduct: 'Դասի նյութ',
+  learnProduct: 'Դասընթացներ',
   retryLevel: 'Կրկին փորձել',
   seeReview: 'Տեսնել պատասխանները',
   backToResults: 'Արդյունք',
@@ -249,7 +246,6 @@ function QuizPage() {
                   <h2 id="quiz-picker-heading" className={styles.pickerTitle}>
                     Ընտրիր բաժին
                   </h2>
-                  <p className={styles.intro}>{T.intro}</p>
                   <ul className={styles.statsRow} aria-label="Թեստի ամփոփում">
                     <li className={styles.statChip}>
                       <span className={styles.statValue}>{quizLevels.length}</span>
@@ -260,7 +256,6 @@ function QuizPage() {
                       <span className={styles.statLabel}>{T.statsQuestions}</span>
                     </li>
                   </ul>
-                  <p className={styles.pickerLead}>{T.pickerHint}</p>
                 </header>
 
                 <ul className={styles.levelGrid}>

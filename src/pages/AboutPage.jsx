@@ -2,7 +2,6 @@ import PageLayout from '../components/layouts/PageLayout';
 import Container from '../components/common/Container';
 import Hero from '../components/sections/Hero';
 import Timeline from '../components/sections/Timeline';
-import Stats from '../components/sections/Stats';
 import CTASection from '../components/sections/CTASection';
 import styles from '../styles/AboutPage.module.css';
 
@@ -13,8 +12,7 @@ import styles from '../styles/AboutPage.module.css';
  *   1. Hero        — баннер с заголовком о Photoshop.
  *   2. History     — 4 параграфа истории Photoshop.
  *   3. Timeline    — вертикальная шкала с 5 событиями.
- *   4. Stats       — 4 числа о масштабе Photoshop.
- *   5. CTA         — призыв перейти на страницу Photoshop.
+ *   4. CTA         — призыв перейти на страницу Photoshop.
  *
  * Все армянские тексты собраны в объект T для удобства правки/перевода.
  */
@@ -111,23 +109,12 @@ const T = {
     ],
   },
 
-  stats: {
-    title: 'Photoshop թվերով',
-    subtitle: 'Ծրագրի մասշտաբը և ազդեցությունը մեկ հայացքով։',
-    items: [
-      { value: '1990', label: 'թողարկման տարի', color: '#31A8FF' },
-      { value: '35+',  label: 'տարվա պատմություն', color: '#FF0000' },
-      { value: '№1',   label: 'նկարների խմբագրիչ', color: '#00CC66' },
-      { value: '26+',  label: 'հիմնական տարբերակ', color: '#9D4EDD' },
-    ],
-  },
-
   cta: {
     title: 'Բացահայտեք Photoshop-ը',
     subtitle:
       'Այժմ դուք ծանոթ եք պատմությանը։ ' +
       'Դիտեք գործիքները, վիդեո-դասերը և թեստը։',
-    primary: { text: 'Photoshop-ի էջ', action: '/product/photoshop' },
+    primary: { text: 'Դասընթացներ', action: '/product/photoshop' },
     secondary: { text: 'Գլխավոր էջ', action: '/' },
   },
 };
@@ -181,15 +168,7 @@ function AboutPage() {
         items={T.timeline.items}
       />
 
-      {/* 4) Статистика */}
-      <Stats
-        title={T.stats.title}
-        subtitle={T.stats.subtitle}
-        items={T.stats.items}
-        background="dark"
-      />
-
-      {/* 5) Финальный CTA */}
+      {/* 4) Финальный CTA */}
       <CTASection
         title={T.cta.title}
         subtitle={T.cta.subtitle}

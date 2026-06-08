@@ -8,9 +8,9 @@ export const videoLessons = [
     theme: 'Adobe Photoshop',
     title: 'Մաշկի նրբացում',
     description:
-      'Դեմքի մաշկի տեքստուրայի մշակում՝ High Pass, Gaussian Blur և շերտերի խառնման միջոցով ' +
-      'բնական, նրբացված արդյունք ստանալու համար։',
-    video: '/videos/photoshop/skin-smoothing.mp4?v=3',
+      'Դեմքի մաշկի տեքստուրայի մշակում՝ Spot Healing Brush գործիքի օգնությամբ, ' +
+      'լուսանկարների թերությունները արագ և հեշտությամբ հեռացնելու համար։',
+    video: '/videos/photoshop/skin-smoothing.mp4?v=4',
   },
   {
     id: 'color-balance',
@@ -19,7 +19,7 @@ export const videoLessons = [
     description:
       'Պատկերի գունային ջերմաստիճանը և երանգը ճշտելու համար՝ Color Balance, Curves և ' +
       'ընտրովի շերտերի օգտագործումով։',
-    video: '/videos/photoshop/color-balance.mp4?v=3',
+    video: '/videos/photoshop/color-balance.mp4?v=4',
   },
 ];
 
