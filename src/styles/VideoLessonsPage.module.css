@@ -8,7 +8,7 @@
 }
 
 .wrap {
-  max-width: 1040px;
+  max-width: 1320px;
   margin: 0 auto;
   padding-top: var(--space-5);
 }
@@ -36,8 +36,17 @@
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-7);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .card {
+    padding: var(--space-4);
+  }
+
+  .description {
+    font-size: var(--fs-sm);
+    min-height: calc(var(--fs-sm) * 1.6 * 5);
   }
 }
 

@@ -91,6 +91,10 @@ export const products = {
           title: 'Գունային բալանս',
           url: '/videos/photoshop/color-balance.mp4?v=4',
         },
+        {
+          title: 'Dodge Tool',
+          url: '/videos/photoshop/dodge-tool.mp4?v=1',
+        },
       ],
     },
     {

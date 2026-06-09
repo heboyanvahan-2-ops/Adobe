@@ -13,6 +13,7 @@ const destDir = path.join(root, 'public', 'videos', 'photoshop');
 const targetsByMatch = [
   { re: /գունային|balans|balance/i, out: 'color-balance.mp4' },
   { re: /մաշկ|skin|smoothing/i, out: 'skin-smoothing.mp4' },
+  { re: /dodge|գունաբացում|լուսավոր/i, out: 'dodge-tool.mp4' },
 ];
 
 let mp4Files = [];
