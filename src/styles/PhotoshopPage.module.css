@@ -156,6 +156,7 @@
 
 .heroStrip {
   margin-bottom: var(--space-4);
+  min-height: 4.5rem;
   padding: var(--space-5) var(--space-5);
   border-radius: var(--radius-xl);
   background: linear-gradient(135deg, #31a8ff 0%, #7c3aed 100%);

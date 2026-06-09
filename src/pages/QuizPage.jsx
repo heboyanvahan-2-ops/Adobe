@@ -24,7 +24,7 @@ const T = {
   startLevel: 'Սկսել',
   stepAria: (i, total) => `Հարց ${i} ${total}-ից`,
   backHome: 'Գլխավոր',
-  learnProduct: 'Դասընթացներ',
+  learnProduct: 'Դասընթաց',
   retryLevel: 'Կրկին փորձել',
   seeReview: 'Տեսնել պատասխանները',
   backToResults: 'Արդյունք',

@@ -114,7 +114,7 @@ const T = {
     subtitle:
       'Այժմ դուք ծանոթ եք պատմությանը։ ' +
       'Դիտեք գործիքները, վիդեո-դասերը և թեստը։',
-    primary: { text: 'Դասընթացներ', action: '/product/photoshop' },
+    primary: { text: 'Դասընթաց', action: '/product/photoshop' },
     secondary: { text: 'Գլխավոր էջ', action: '/' },
   },
 };

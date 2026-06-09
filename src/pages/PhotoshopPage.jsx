@@ -354,7 +354,7 @@ function PhotoshopPage() {
   };
 
   return (
-    <PageLayout title="Դասընթացներ">
+    <PageLayout title="Դասընթաց">
       <div className={styles.page}>
         <div className={styles.layout}>
           <aside className={styles.sidebar} aria-label="Թեմաների ցանկ">
@@ -362,7 +362,7 @@ function PhotoshopPage() {
               <span className={styles.sidebarIcon} aria-hidden="true">
                 ☰
               </span>
-              <h2 className={styles.sidebarTitle}>Դասընթացներ</h2>
+              <h2 className={styles.sidebarTitle}>Թեմաներ</h2>
             </div>
 
             <ul className={styles.navList}>
@@ -383,9 +383,7 @@ function PhotoshopPage() {
           </aside>
 
           <main className={styles.main}>
-            <div className={styles.heroStrip}>
-              <h1 className={styles.heroTitle}>Դասընթացներ</h1>
-            </div>
+            <div className={styles.heroStrip} aria-hidden="true" />
 
             <div className={styles.card}>
               {lesson && <LessonContent lesson={lesson} />}

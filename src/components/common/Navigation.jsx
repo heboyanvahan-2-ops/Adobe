@@ -17,7 +17,7 @@ const NAV_STRUCTURE = [
   { type: 'link', to: '/',       label: 'Գլխավոր',       end: true },
   { type: 'link', to: '/about',  label: 'Adobe Photoshop-ի Մասին' },
 
-  { type: 'link', to: '/product/photoshop', label: 'Դասընթացներ' },
+  { type: 'link', to: '/product/photoshop', label: 'Դասընթաց' },
 
   { type: 'link', to: '/video-lessons', label: 'Տեսադասեր' },
 
